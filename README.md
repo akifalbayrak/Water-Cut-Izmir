@@ -1,4 +1,4 @@
-**README**
+**Water Cut Izmır**
 
 This project is a web application designed to display and manage active water cuts (su kesintileri) in İzmir, Turkey. It provides real-time information about water interruptions, including details such as affected neighborhoods, duration of the interruption, and expected resolution time. Users can search for specific neighborhoods or districts to find relevant information about water cuts in their area.
 
