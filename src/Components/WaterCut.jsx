@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
 
-const Main = () => {
+const WaterCut = () => {
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedItem, setSelectedItem] = useState(null);
@@ -44,28 +44,27 @@ const Main = () => {
         // Parse the date
         const endDate = new Date(arizaGiderilmeTarihi);
         const now = new Date();
-    
+
         // Calculate the difference in milliseconds
         const diff = endDate.getTime() - now.getTime();
-        if(diff<0){
+        if (diff < 0) {
             return "";
         }
-    
+
         // Convert milliseconds to minutes and seconds
         const totalSeconds = Math.abs(Math.floor(diff / 1000));
         const days = Math.floor(totalSeconds / (3600 * 24));
         const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
         const minutes = Math.floor((totalSeconds % 3600) / 60);
-    
+
         // Construct the remaining time string
         let remainingTimeStr = "";
-            remainingTimeStr += `${days > 0 ? days + " gün " : ""}`;
-            remainingTimeStr += `${hours > 0 ? hours + " saat " : ""}`;
-            remainingTimeStr += `${minutes > 0 ? minutes + " dakika " : ""}`;
-    
+        remainingTimeStr += `${days > 0 ? days + " gün " : ""}`;
+        remainingTimeStr += `${hours > 0 ? hours + " saat " : ""}`;
+        remainingTimeStr += `${minutes > 0 ? minutes + " dakika " : ""}`;
+
         return remainingTimeStr.trim();
     }
-    
 
     // Function to handle item click and toggle selected item
     const handleItemClick = (item) => {
@@ -89,7 +88,7 @@ const Main = () => {
     });
 
     return (
-        <main className="Main p-8 lg:w-3/4 mx-auto ">
+        <main className="WaterCut p-8 lg:w-3/4 mx-auto ">
             <div className="container mx-auto flex flex-col justify-center items-center">
                 <div className="flex items-center mb-8">
                     <h1 className="text-3xl font-bold text-center">
@@ -178,12 +177,15 @@ const Main = () => {
                                     {formatDateTime(item.GuncellemeTarihi)}
                                 </p>
                                 {remainingTime(item.ArizaGiderilmeTarihi) && (
-                                <p className="my-4">
-                                    <strong className="text-black mx-3">
-                                        Arızanın Giderilme Süresine Kalan Süre:
-                                    </strong>
-                                    {remainingTime(item.ArizaGiderilmeTarihi)}
-                                </p>
+                                    <p className="my-4">
+                                        <strong className="text-black mx-3">
+                                            Arızanın Giderilme Süresine Kalan
+                                            Süre:
+                                        </strong>
+                                        {remainingTime(
+                                            item.ArizaGiderilmeTarihi
+                                        )}
+                                    </p>
                                 )}
                             </div>
                         )}
@@ -194,4 +196,4 @@ const Main = () => {
     );
 };
 
-export default Main;
+export default WaterCut;

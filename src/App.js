@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"; // Import Route
 import "./App.css";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
-import Main from "./Components/Main";
+import WaterCut from "./Components/WaterCut";
 import PoliticsContent from "./Components/PoliticsContent";
 import DailyWater from "./Components/DailyWater";
 
@@ -14,7 +14,7 @@ function App() {
             <div className="min-h-screen flex flex-col">
                 <Header />
                 <Routes>
-                    <Route path="/" element={<Main />} />
+                    <Route index element={<WaterCut />} />
                     <Route path="/daily-water" element={<DailyWater />} />
                     <Route path="/politics" element={<PoliticsContent />} />
                 </Routes>
