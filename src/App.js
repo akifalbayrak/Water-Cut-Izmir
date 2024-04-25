@@ -8,6 +8,7 @@ import WaterCut from "./Components/WaterCut";
 import PoliticsContent from "./Components/PoliticsContent";
 import DailyWater from "./Components/DailyWater";
 import WeeklyWaterAnalysis from "./Components/WeeklyWaterAnalysis";
+import MonthlySourceWaterProduction from "./Components/MonthlySourceWaterProduction";
 
 function App() {
     return (
@@ -21,6 +22,10 @@ function App() {
                     <Route
                         path="/weekly-water-analysis"
                         element={<WeeklyWaterAnalysis />}
+                    />
+                    <Route
+                        path="/distribution-of-water-production"
+                        element={<MonthlySourceWaterProduction />}
                     />
                 </Routes>
                 <Footer />
