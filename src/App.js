@@ -9,6 +9,7 @@ import PoliticsContent from "./Components/PoliticsContent";
 import DailyWater from "./Components/DailyWater";
 import WeeklyWaterAnalysis from "./Components/WeeklyWaterAnalysis";
 import MonthlySourceWaterProduction from "./Components/MonthlySourceWaterProduction";
+import DamFillRate from "./Components/DamFillRate";
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
                         path="/distribution-of-water-production"
                         element={<MonthlySourceWaterProduction />}
                     />
+                    <Route path="/dam-fill-rate" element={<DamFillRate />} />
                 </Routes>
                 <Footer />
             </div>
