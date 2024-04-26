@@ -3,7 +3,6 @@ import { IoIosSearch } from "react-icons/io";
 
 const MonthlySourceWaterProduction = () => {
     const [data, setData] = useState([]);
-    const [selectedItem, setSelectedItem] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [limitor, setLimitor] = useState(10);
     const [loading, setLoading] = useState(false);
@@ -106,8 +105,10 @@ const MonthlySourceWaterProduction = () => {
                                 )
                             )
                             .slice(0, limitor)
-                            .map((item) => (
-                                <div className="p-6 rounded-xl border grid grid-cols-5 items-center space-x-4 my-2 bg-white">
+                            .map((item, index) => (
+                                <div
+                                    key={index}
+                                    className="p-6 rounded-xl border grid grid-cols-5 items-center space-x-4 my-2 bg-white">
                                     <div>
                                         <p class="text-gray-700 font-bold">
                                             Uretim Kaynagi
@@ -140,6 +141,18 @@ const MonthlySourceWaterProduction = () => {
                                     </div>
                                 </div>
                             ))}
+                        {data.filter((item) =>
+                            item.UretimKaynagi.toLowerCase().includes(
+                                searchTerm.toLowerCase()
+                            )
+                        ).length === 0 && (
+                            <p>
+                                No data found for{" "}
+                                <span className="italic font-bold">
+                                    {searchTerm}
+                                </span>
+                            </p>
+                        )}
                     </div>
                 )}
             </div>
