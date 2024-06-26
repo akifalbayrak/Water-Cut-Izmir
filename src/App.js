@@ -13,6 +13,7 @@ import DamFillRate from "./Components/DamFillRate";
 import DamList from "./Components/DamList";
 import DamWaterQuality from "./Components/DamWaterQuality";
 import HistoricalWater from "./Components/HistoricalWater";
+import BlueFlagBeaches from "./Components/BlueFlagBeaches";
 
 function App() {
     return (
@@ -40,6 +41,10 @@ function App() {
                     <Route
                         path="/historical-water-structures"
                         element={<HistoricalWater />}
+                    />
+                    <Route
+                        path="/blue-flag-beaches"
+                        element={<BlueFlagBeaches />}
                     />
                 </Routes>
                 <Footer />
