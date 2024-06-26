@@ -89,7 +89,7 @@ const DamList = () => {
             <div className="card-container my-4 p-4 bg-white rounded-lg shadow-md">
                 {loading && <p>Loading...</p>}
                 {data && (
-                    <div className="gap-4 grid grid-cols-4">
+                    <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                         {data
                             .filter((item) =>
                                 item.Adi.toLowerCase().includes(
@@ -100,36 +100,22 @@ const DamList = () => {
                             .map((item, index) => (
                                 <div
                                     key={index}
-                                    className="card my-4 px-16 py-8 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-100 transition-transform transform hover:scale-105 hover:shadow-lg"
+                                    className="card my-4 px-8 py-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition duration-200 ease-in-out transform hover:scale-105 hover:shadow-md"
                                     onClick={() => handleItemClick(item)}>
                                     <div>
-                                        <p class="text-gray-700 font-bold">
-                                            Adi{" "}
+                                        <p className="text-gray-800 font-semibold">
+                                            Adi
                                         </p>
-                                        <p class="text-gray-500">{item.Adi}</p>
+                                        <p className="text-gray-600">
+                                            {item.Adi}
+                                        </p>
                                     </div>
                                     <div>
-                                        <p class="text-gray-700 font-bold">
-                                            TurAdi{" "}
+                                        <p className="text-gray-800 font-semibold">
+                                            Tur Adi
                                         </p>
-                                        <p class="text-gray-500">
+                                        <p className="text-gray-600">
                                             {item.TurAdi}
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <p class="text-gray-700 font-bold">
-                                            Enlem
-                                        </p>
-                                        <p class="text-gray-500">
-                                            {item.Enlem ? item.Enlem : "N/A"}
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <p class="text-gray-700 font-bold">
-                                            Boylam
-                                        </p>
-                                        <p class="text-gray-500">
-                                            {item.Boylam ? item.Boylam : "N/A"}
                                         </p>
                                     </div>
                                 </div>
@@ -139,9 +125,9 @@ const DamList = () => {
                                 searchTerm.toLowerCase()
                             )
                         ).length === 0 && (
-                            <p>
+                            <p className="col-span-full text-center py-5">
                                 No data found for{" "}
-                                <span className="italic font-bold">
+                                <span className="italic font-semibold">
                                     {searchTerm}
                                 </span>
                             </p>

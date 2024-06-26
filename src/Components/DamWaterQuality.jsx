@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
+import Modal from "./Modal";
 
 const DamWaterQuality = () => {
     const [data, setData] = useState([]);
@@ -7,6 +8,7 @@ const DamWaterQuality = () => {
     const [limitor, setLimitor] = useState(12);
     const [loading, setLoading] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,23 +26,19 @@ const DamWaterQuality = () => {
         };
 
         fetchData();
-        // Set up interval to fetch data every minute
-        const interval = setInterval(fetchData, 60000); // 60000 milliseconds = 1 minute
-
-        // Clean up interval on component unmount
+        const interval = setInterval(fetchData, 60000);
         return () => clearInterval(interval);
     }, []);
 
-    // Function to handle item click and toggle selected item
     const handleItemClick = (item) => {
-        if (selectedItem === item) {
-            setSelectedItem(null);
-        } else {
-            setSelectedItem(item);
-        }
+        setSelectedItem(item);
+        setModalIsOpen(true);
     };
 
-    // Function to format date and time
+    const closeModal = () => {
+        setModalIsOpen(false);
+    };
+
     const formatDateTime = (dateTimeString) => {
         const dateTime = new Date(dateTimeString);
         return dateTime.toLocaleDateString("tr-TR");
@@ -48,11 +46,6 @@ const DamWaterQuality = () => {
 
     const changeInput = (e) => {
         setSearchTerm(e.target.value.toLowerCase());
-        data.filter((item) => {
-            if (item.BarajAdi.includes(searchTerm)) {
-                return item;
-            }
-        });
     };
 
     useEffect(() => {
@@ -61,7 +54,6 @@ const DamWaterQuality = () => {
                 window.innerHeight + document.documentElement.scrollTop ===
                 document.documentElement.offsetHeight
             ) {
-                // User has scrolled to the bottom
                 setLimitor((prev) => prev + 20);
             }
         };
@@ -124,80 +116,8 @@ const DamWaterQuality = () => {
                                             {formatDateTime(item.Tarih)}
                                         </p>
                                     </div>
-                                    <div>
-                                        {item.Analizler.map((analiz, index) => (
-                                            <div
-                                                key={index}
-                                                className={
-                                                    selectedItem?.BarajAdi ===
-                                                    item.BarajAdi
-                                                        ? "block"
-                                                        : "hidden"
-                                                }>
-                                                <p className="font-bold">
-                                                    <div>
-                                                        <p className="text-black">
-                                                            AnalizTipAdi:{" "}
-                                                        </p>
-                                                        <span>
-                                                            {
-                                                                analiz.AnalizTipAdi
-                                                            }
-                                                        </span>
-                                                    </div>
-                                                </p>
-                                                {analiz.AnalizElemanlari.map(
-                                                    (eleman, index) => (
-                                                        <div
-                                                            key={index}
-                                                            className="text-black">
-                                                            <hr />
-                                                            <p>
-                                                                ParametreAdi:{" "}
-                                                                <span className="text-gray-600">
-                                                                    {
-                                                                        eleman.ParametreAdi
-                                                                    }
-                                                                </span>
-                                                            </p>
-                                                            <p>
-                                                                Standart:{" "}
-                                                                {
-                                                                    eleman.Standart
-                                                                }
-                                                            </p>
-                                                            <p>
-                                                                Birim:{" "}
-                                                                {eleman.Birim}
-                                                            </p>
-                                                            <p>
-                                                                IslenmisSu:{" "}
-                                                                {
-                                                                    eleman.IslenmisSu
-                                                                }
-                                                            </p>
-                                                            <p>
-                                                                IslenmemisSu:{" "}
-                                                                {
-                                                                    eleman.IslenmemisSu
-                                                                }
-                                                            </p>
-                                                            <p>
-                                                                Regulasyon:{" "}
-                                                                {
-                                                                    eleman.Regulasyon
-                                                                }
-                                                            </p>
-                                                            <hr />
-                                                        </div>
-                                                    )
-                                                )}
-                                            </div>
-                                        ))}
-                                    </div>
                                 </div>
                             ))}
-
                         {data.filter((item) =>
                             item.BarajAdi.toLowerCase().includes(
                                 searchTerm.toLowerCase()
@@ -213,6 +133,71 @@ const DamWaterQuality = () => {
                     </div>
                 )}
             </div>
+            <Modal show={modalIsOpen} onClose={closeModal}>
+                {selectedItem && (
+                    <div className="modal-content ">
+                        <h2 className="text-2xl font-bold mb-4">
+                            {selectedItem.BarajAdi}
+                        </h2>
+                        <p className="mb-4">
+                            Tarih: {formatDateTime(selectedItem.Tarih)}
+                        </p>
+                        {selectedItem.Analizler.map((analiz, index) => (
+                            <div key={index} className="mb-4">
+                                <p className="text-lg font-semibold">
+                                    Analiz Tipi: {analiz.AnalizTipAdi}
+                                </p>
+                                {analiz.AnalizElemanlari.map(
+                                    (eleman, index) => (
+                                        <div
+                                            key={index}
+                                            className="p-2 border-b border-gray-200">
+                                            <p className="text-gray-700">
+                                                <span className="font-semibold">
+                                                    Parametre Adı:{" "}
+                                                </span>
+                                                {eleman.ParametreAdi}
+                                            </p>
+                                            <p className="text-gray-700">
+                                                <span className="font-semibold">
+                                                    Standart:{" "}
+                                                </span>
+                                                {eleman.Standart}
+                                            </p>
+                                            <p className="text-gray-700">
+                                                <span className="font-semibold">
+                                                    Birim:{" "}
+                                                </span>
+                                                {eleman.Birim}
+                                            </p>
+                                            <p className="text-gray-700">
+                                                <span className="font-semibold">
+                                                    İşlenmiş Su:{" "}
+                                                </span>
+                                                {eleman.IslenmisSu}
+                                            </p>
+                                            <p className="text-gray-700">
+                                                <span className="font-semibold">
+                                                    İşlenmemiş Su:{" "}
+                                                </span>
+                                                {eleman.IslenmemisSu}
+                                            </p>
+                                            {eleman.Regulasyon && (
+                                                <p className="text-gray-700">
+                                                    <span className="font-semibold">
+                                                        Regulasyon:{" "}
+                                                    </span>
+                                                    {eleman.Regulasyon}
+                                                </p>
+                                            )}
+                                        </div>
+                                    )
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </Modal>
         </main>
     );
 };

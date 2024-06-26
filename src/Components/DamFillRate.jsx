@@ -137,22 +137,7 @@ const DamFillRate = () => {
                                             )}
                                         </p>
                                     </div>
-                                    <div>
-                                        <p class="text-gray-700 font-bold">
-                                            Boylam
-                                        </p>
-                                        <p class="text-gray-500">
-                                            {item.Boylam ? item.Boylam : "N/A"}
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <p class="text-gray-700 font-bold">
-                                            Enlem
-                                        </p>
-                                        <p class="text-gray-500">
-                                            {item.Enlem ? item.Enlem : "N/A"}
-                                        </p>
-                                    </div>
+
                                     <div>
                                         <p class="text-gray-700 font-bold">
                                             TuketilebilirSuKapasitesi
@@ -173,16 +158,7 @@ const DamFillRate = () => {
                                             )}
                                         </p>
                                     </div>
-                                    <div>
-                                        <p class="text-gray-700 font-bold">
-                                            BarajSuDurumuGosterimi
-                                        </p>
-                                        <p class="text-gray-500">
-                                            {item.BarajSuDurumuGosterimi
-                                                ? item.BarajSuDurumuGosterimi
-                                                : "N/A"}
-                                        </p>
-                                    </div>
+
                                     <div>
                                         <p class="text-gray-700 font-bold">
                                             MinimumSuYuksekligi

@@ -12,7 +12,7 @@ const Header = () => {
 
     return (
         <>
-            <header className="bg-white text-gray-800 flex justify-center">
+            <header className="bg-white text-gray-800 flex justify-center my-8">
                 <div className="container items-center justify-center">
                     <Link to="/" className="flex items-center justify-center">
                         <FontAwesomeIcon
