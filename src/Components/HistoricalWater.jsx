@@ -80,7 +80,7 @@ const HistoricalWater = () => {
                             if (searchTerm === "") {
                                 return item;
                             } else if (
-                                item.ad.toLowerCase().includes(searchTerm)
+                                item.ADI.toLowerCase().includes(searchTerm)
                             ) {
                                 return item;
                             }

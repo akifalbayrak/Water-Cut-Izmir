@@ -1,6 +1,6 @@
 // App.js
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom"; // Import Routes
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom"; // Import Routes
 import "./App.css";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
@@ -21,7 +21,11 @@ function App() {
             <div className="min-h-screen flex flex-col">
                 <Header />
                 <Routes>
-                    <Route index element={<WaterCut />} />
+                    <Route
+                        path="/"
+                        element={<Navigate replace to="/water-cut" />}
+                    />
+                    <Route path="water-cut" element={<WaterCut />} />
                     <Route path="/daily-water" element={<DailyWater />} />
                     <Route path="/politics" element={<PoliticsContent />} />
                     <Route
