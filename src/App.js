@@ -11,6 +11,7 @@ import WeeklyWaterAnalysis from "./Components/WeeklyWaterAnalysis";
 import MonthlySourceWaterProduction from "./Components/MonthlySourceWaterProduction";
 import DamFillRate from "./Components/DamFillRate";
 import DamList from "./Components/DamList";
+import DamWaterQuality from "./Components/DamWaterQuality";
 
 function App() {
     return (
@@ -31,6 +32,10 @@ function App() {
                     />
                     <Route path="/dam-fill-rate" element={<DamFillRate />} />
                     <Route path="/dam-list" element={<DamList />} />
+                    <Route
+                        path="/dam-water-quality-reports"
+                        element={<DamWaterQuality />}
+                    />
                 </Routes>
                 <Footer />
             </div>
