@@ -15,6 +15,7 @@ import DamWaterQuality from "./Components/DamWaterQuality";
 import HistoricalWater from "./Components/HistoricalWater";
 import BlueFlagBeaches from "./Components/BlueFlagBeaches";
 import SurroundingDistrictWater from "./Components/SurroundingDistrictWater";
+import DepartmentCashDesk from "./Components/DepartmentCashDesk";
 
 function App() {
     return (
@@ -54,6 +55,10 @@ function App() {
                     <Route
                         path="/surrounding-district-water-quality"
                         element={<SurroundingDistrictWater />}
+                    />
+                    <Route
+                        path="/department-cash-desk"
+                        element={<DepartmentCashDesk />}
                     />
                 </Routes>
                 <Footer />
