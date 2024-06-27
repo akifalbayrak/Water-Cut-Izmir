@@ -26,7 +26,7 @@ const DamWaterQuality = () => {
         };
 
         fetchData();
-        const interval = setInterval(fetchData, 60000);
+        const interval = setInterval(fetchData, 600000); // 600000 milliseconds = 10 minute
         return () => clearInterval(interval);
     }, []);
 

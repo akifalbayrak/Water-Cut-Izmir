@@ -20,7 +20,7 @@ const WeeklyWaterAnalysis = () => {
 
         fetchData();
         // Set up interval to fetch data every minute
-        const interval = setInterval(fetchData, 60000); // 60000 milliseconds = 1 minute
+        const interval = setInterval(fetchData, 600000); // 600000 milliseconds = 10 minute
 
         // Clean up interval on component unmount
         return () => clearInterval(interval);

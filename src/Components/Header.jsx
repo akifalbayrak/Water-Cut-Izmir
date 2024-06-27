@@ -80,6 +80,11 @@ const Header = () => {
                                 to="/blue-flag-beaches">
                                 Mavi Bayraklı Plajlar Konum Verisi
                             </Link>
+                            <Link
+                                className="text-blue-500 hover:text-blue-700"
+                                to="/surrounding-district-water-quality">
+                                Çevre İlçe Merkezlerinin Analiz Sonuçları
+                            </Link>
                         </div>
                     )}
                 </div>

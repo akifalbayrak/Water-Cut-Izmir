@@ -14,6 +14,7 @@ import DamList from "./Components/DamList";
 import DamWaterQuality from "./Components/DamWaterQuality";
 import HistoricalWater from "./Components/HistoricalWater";
 import BlueFlagBeaches from "./Components/BlueFlagBeaches";
+import SurroundingDistrictWater from "./Components/SurroundingDistrictWater";
 
 function App() {
     return (
@@ -49,6 +50,10 @@ function App() {
                     <Route
                         path="/blue-flag-beaches"
                         element={<BlueFlagBeaches />}
+                    />
+                    <Route
+                        path="/surrounding-district-water-quality"
+                        element={<SurroundingDistrictWater />}
                     />
                 </Routes>
                 <Footer />
