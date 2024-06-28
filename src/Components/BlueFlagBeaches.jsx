@@ -95,7 +95,7 @@ const BlueFlagBeaches = () => {
                         .map((item, index) => (
                             <div
                                 key={index}
-                                className="card-item cursor-pointer my-2 p-4 bg-gray-50 rounded-lg shadow-md transition duration-300 ease-in-out hover:bg-gray-300"
+                                className="card-item cursor-pointer my-2 p-4 rounded-lg shadow-md transition duration-300 ease-in-out hover:bg-gray-200"
                                 onClick={() => handleItemClick(item)}>
                                 <div className="flex justify-between items-center select-none ">
                                     <div>

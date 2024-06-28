@@ -94,13 +94,14 @@ const HistoricalWater = () => {
                                 onClick={() => handleItemClick(item)}>
                                 <div className="flex justify-between items-center">
                                     <div>
-                                        <h5 className="font-bold text-2xl">
+                                        <p className="text-gray-700 font-bold">
                                             {item.ADI}
-                                        </h5>
-                                        <p className="font-semibold text-lg italic">
-                                            <strong>Konum:</strong> {item.ILCE},{" "}
-                                            {item.MAHALLE}, No: {item.KAPINO},
-                                            Sokak: {item.YOL}
+                                        </p>
+                                        <p className="text-gray-700">
+                                            <span>Konum: </span> {item.ILCE},{" "}
+                                            {item.MAHALLE}, <span>No: </span>{" "}
+                                            {item.KAPINO},<span>Sokak: </span>
+                                            {item.YOL}
                                         </p>
                                     </div>
                                     <span className="text-gray-500">

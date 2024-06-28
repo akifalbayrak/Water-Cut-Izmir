@@ -45,13 +45,13 @@ const DailyWater = () => {
                     </h3>
                 </div>
             </div>
-            <div className="card-container my-4 p-4 bg-gray-100 rounded-lg shadow-md">
+            <div className="card-container my-4 p-4 rounded-lg shadow-md">
                 {data.BarajKuyuUretimleri && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {data.BarajKuyuUretimleri.map((item) => (
                             <div
                                 key={item.BarajKuyuId}
-                                className={`card border rounded-md cursor-pointer bg-white shadow-md hover:border-gray-400 transition duration-200 ease-in-out transform hover:scale-105 hover:shadow-md ${
+                                className={`card border rounded-md cursor-pointer shadow-md hover:border-gray-400 transition duration-200 ease-in-out transform hover:scale-105 hover:shadow-md ${
                                     selectedItem === item ? "bg-gray-200" : ""
                                 }`}>
                                 <div className="card-header flex justify-between px-4 py-2">
