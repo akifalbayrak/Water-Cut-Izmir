@@ -33,7 +33,7 @@ const WeeklyWaterAnalysis = () => {
     };
 
     return (
-        <main className="WeeklyWaterAnalysis px-8 py-4 lg:w-3/4 mx-auto bg-gray-100">
+        <main className="WeeklyWaterAnalysis px-8 py-4 lg:w-3/4 mx-auto ">
             <div className="container mx-auto flex flex-col justify-center items-center">
                 <div className="items-center mb-2">
                     <h1 className="text-3xl font-bold text-center text-gray-800">
@@ -41,7 +41,7 @@ const WeeklyWaterAnalysis = () => {
                     </h1>
                 </div>
             </div>
-            <div className="card-container my-4 p-4 bg-white rounded-lg shadow-md">
+            <div className="card-container my-4 p-4 rounded-lg shadow-md">
                 {data.TumAnalizler && (
                     <>
                         <div className="my-4 p-6 rounded-lg shadow-md bg-white">
@@ -57,7 +57,7 @@ const WeeklyWaterAnalysis = () => {
                         <div className="gap-4">
                             {data.TumAnalizler[0].analizSonuclari.map(
                                 (item) => (
-                                    <div className="p-6 rounded-xl border grid grid-cols-5 items-center space-x-4 my-2 bg-white">
+                                    <div className="p-6 rounded-xl border grid grid-cols-5 items-center space-x-4 my-2 bg-white shadow-md hover:border-gray-400 transition duration-200 ease-in-out transform hover:scale-105 hover:shadow-md">
                                         <div>
                                             <p class="text-gray-700 font-bold">
                                                 Parametre Kodu

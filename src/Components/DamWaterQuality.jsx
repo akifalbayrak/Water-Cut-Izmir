@@ -65,7 +65,7 @@ const DamWaterQuality = () => {
     }, []);
 
     return (
-        <main className="DamWaterQuality px-8 py-4 lg:w-3/4 mx-auto bg-gray-100">
+        <main className="DamWaterQuality px-8 py-4 lg:w-3/4 mx-auto ">
             <div className="container mx-auto flex flex-col justify-center items-center">
                 <div className="items-center mb-2">
                     <h1 className="text-3xl font-bold text-center text-gray-800">
@@ -98,7 +98,7 @@ const DamWaterQuality = () => {
                             .map((item, index) => (
                                 <div
                                     key={index}
-                                    className="card my-8 px-16 py-8 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-100 transition-transform transform hover:scale-105 hover:shadow-lg"
+                                    className="card my-4 px-16 py-8 border hover:border-gray-400 transition duration-200 ease-in-out transform hover:scale-105 hover:shadow-md rounded-2xl"
                                     onClick={() => handleItemClick(item)}>
                                     <div>
                                         <p className="text-gray-700 font-bold">

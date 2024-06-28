@@ -38,57 +38,57 @@ const Header = () => {
                 {isOpen && (
                     <div className="text-s grid grid-cols-1 md:grid-cols-4 gap-3 my-4 md:my-8 mx-16">
                         <Link
-                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-500 hover:bg-gray-500"
+                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-150 hover:bg-gray-500"
                             to="/">
                             Arıza Kaynaklı Düzensiz Su Kesintileri
                         </Link>
                         <Link
-                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-500 hover:bg-gray-500"
+                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-150 hover:bg-gray-500"
                             to="/daily-water">
                             Günlük Su Üretimi
                         </Link>
                         <Link
-                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-500 hover:bg-gray-500"
+                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-150 hover:bg-gray-500"
                             to="/weekly-water-analysis">
                             Haftalık Su Analiz Sonuçları
                         </Link>
                         <Link
-                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-500 hover:bg-gray-500"
+                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-150 hover:bg-gray-500"
                             to="/distribution-of-water-production">
                             Su Üretiminin Aylara ve Kaynaklara Göre Dağılımı
                         </Link>
                         <Link
-                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-500 hover:bg-gray-500"
+                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-150 hover:bg-gray-500"
                             to="/dam-fill-rate">
                             Baraj Doluluk Oranı
                         </Link>
                         <Link
-                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-500 hover:bg-gray-500"
+                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-150 hover:bg-gray-500"
                             to="/dam-list">
                             Baraj Listesi
                         </Link>
                         <Link
-                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-500 hover:bg-gray-500"
+                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-150 hover:bg-gray-500"
                             to="/dam-water-quality-reports">
                             Baraj Su Kalite Raporları
                         </Link>
                         <Link
-                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-500 hover:bg-gray-500"
+                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-150 hover:bg-gray-500"
                             to="/historical-water-structures">
                             Tarihi Su Yapıları Konum Verisi
                         </Link>
                         <Link
-                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-500 hover:bg-gray-500"
+                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-150 hover:bg-gray-500"
                             to="/blue-flag-beaches">
                             Mavi Bayraklı Plajlar Konum Verisi
                         </Link>
                         <Link
-                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-500 hover:bg-gray-500"
+                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-150 hover:bg-gray-500"
                             to="/surrounding-district-water-quality">
                             Çevre İlçe Merkezlerinin Analiz Sonuçları
                         </Link>
                         <Link
-                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-500 hover:bg-gray-500"
+                            className="rounded-lg text-blue-500 hover:text-white border text-center py-2 border-gray-150 hover:bg-gray-500"
                             to="/department-cash-desk">
                             Şube ve Vezne Bilgileri
                         </Link>

@@ -79,11 +79,11 @@ const WaterCut = () => {
     const filteredData = data.filter((item) => {
         const searchTermsArray = searchTerm
             .split(",")
-            .map((term) => term.trim().toUpperCase());
+            .map((term) => term.trim().toLowerCase());
         return searchTermsArray.some(
             (searchTerm) =>
-                item.Mahalleler.toUpperCase().includes(searchTerm) ||
-                item.IlceAdi.toUpperCase().includes(searchTerm)
+                item.IlceAdi.toLowerCase().includes(searchTerm) ||
+                item.Mahalleler.toLowerCase().includes(searchTerm)
         );
     });
 
@@ -102,14 +102,14 @@ const WaterCut = () => {
                         placeholder="Mahalle veya ilçe ara"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full px-4 py-3 rounded-3xl focus:outline-none focus:border-blue-500 bg-gray-200 text-lg"
+                        className=" bg-gray-200 text-lg shadow border-none rounded w-full py-2 px-3 text-gray-700 leading-tight "
                     />
                 </div>
             </div>
             <div className="card-container my-4 p-8">
                 {filteredData.map((item, index) => (
                     <div
-                        className="card my-4 px-16 py-8 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-100 transition-transform transform hover:scale-105 hover:shadow-lg"
+                        className="card my-4 px-16 py-8 border border-gray-300 rounded-3xl cursor-pointer hover:border-gray-400 transition duration-200 ease-in-out transform hover:scale-105 hover:shadow-md"
                         key={index}
                         onClick={() => handleItemClick(item)}>
                         <h2 className="text-xl font-semibold my-2">

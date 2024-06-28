@@ -80,13 +80,18 @@ const BlueFlagBeaches = () => {
                             if (searchTerm === "") {
                                 return item;
                             } else if (
-                                item.ADI.toLowerCase().includes(searchTerm)
+                                item.ADI.toLowerCase().includes(searchTerm) ||
+                                item.ILCE.toLowerCase().includes(searchTerm) ||
+                                item.MAHALLE.toLowerCase().includes(
+                                    searchTerm
+                                ) ||
+                                item.YOL.toLowerCase().includes(searchTerm) ||
+                                item.ACIKLAMA.toLowerCase().includes(searchTerm)
                             ) {
                                 return item;
                             }
                             return null;
                         })
-                        .slice(0, limitor)
                         .map((item, index) => (
                             <div
                                 key={index}
@@ -94,14 +99,15 @@ const BlueFlagBeaches = () => {
                                 onClick={() => handleItemClick(item)}>
                                 <div className="flex justify-between items-center select-none ">
                                     <div>
-                                        <h5 className="font-bold text-2xl">
+                                        <p className="text-gray-700 font-bold">
                                             {item.ADI}
-                                        </h5>
-                                        <p className="font-semibold text-lg italic">
-                                            <strong>Konum:</strong> {item.ILCE},{" "}
-                                            {item.MAHALLE}, Sokak: {item.YOL}
                                         </p>
-                                        <p className="text-sm text-gray-700">
+                                        <p className="text-gray-500">
+                                            <span>Konum:</span> {item.ILCE}{" "}
+                                            {item.MAHALLE}, <span>Sokak:</span>{" "}
+                                            {item.YOL}
+                                        </p>
+                                        <p className="text-sm text-gray-500">
                                             {item.ACIKLAMA}
                                         </p>
                                     </div>

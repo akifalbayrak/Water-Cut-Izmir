@@ -67,7 +67,7 @@ const DamList = () => {
     }, []);
 
     return (
-        <main className="DamList px-8 py-4 lg:w-3/4 mx-auto bg-gray-100">
+        <main className="DamList px-8 py-4 lg:w-3/4 mx-auto ">
             <div className="container mx-auto flex flex-col justify-center items-center">
                 <div className="items-center mb-2">
                     <h1 className="text-3xl font-bold text-center text-gray-800">
@@ -100,7 +100,7 @@ const DamList = () => {
                             .map((item, index) => (
                                 <div
                                     key={index}
-                                    className="card my-4 px-8 py-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition duration-200 ease-in-out transform hover:scale-105 hover:shadow-md"
+                                    className="card my-4 px-8 py-4 border border-gray-200 rounded-lg cursor-pointer hover:border-gray-400 transition duration-200 ease-in-out transform hover:scale-105 hover:shadow-md"
                                     onClick={() => handleItemClick(item)}>
                                     <div>
                                         <p className="text-gray-800 font-semibold">

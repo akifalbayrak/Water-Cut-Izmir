@@ -34,7 +34,7 @@ const DailyWater = () => {
     };
 
     return (
-        <main className="DailyWater px-8 py-4 lg:w-3/4 mx-auto bg-gray-100">
+        <main className="DailyWater px-8 py-4 lg:w-3/4 mx-auto ">
             <div className="container mx-auto flex flex-col justify-center items-center">
                 <div className="items-center mb-2">
                     <h1 className="text-3xl font-bold text-center text-gray-800">
@@ -45,13 +45,13 @@ const DailyWater = () => {
                     </h3>
                 </div>
             </div>
-            <div className="card-container my-4 p-4 bg-white rounded-lg shadow-md">
+            <div className="card-container my-4 p-4 bg-gray-100 rounded-lg shadow-md">
                 {data.BarajKuyuUretimleri && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {data.BarajKuyuUretimleri.map((item) => (
                             <div
                                 key={item.BarajKuyuId}
-                                className={`card border rounded-md cursor-pointer hover:bg-gray-100 ${
+                                className={`card border rounded-md cursor-pointer bg-white shadow-md hover:border-gray-400 transition duration-200 ease-in-out transform hover:scale-105 hover:shadow-md ${
                                     selectedItem === item ? "bg-gray-200" : ""
                                 }`}>
                                 <div className="card-header flex justify-between px-4 py-2">

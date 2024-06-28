@@ -69,7 +69,7 @@ const DamFillRate = () => {
     }, []);
 
     return (
-        <main className="DamFillRate px-8 py-4 lg:w-3/4 mx-auto bg-gray-100">
+        <main className="DamFillRate px-8 py-4 lg:w-3/4 mx-auto ">
             <div className="container mx-auto flex flex-col justify-center items-center">
                 <div className="items-center mb-2">
                     <h1 className="text-3xl font-bold text-center text-gray-800">
@@ -88,10 +88,10 @@ const DamFillRate = () => {
                     <IoIosSearch className="text-gray-500" />
                 </span>
             </div>
-            <div className="card-container my-4 p-4 bg-white rounded-lg shadow-md">
+            <div className="card-container my-4 p-4 rounded-lg shadow-md">
                 {loading && <p>Loading...</p>}
                 {data && (
-                    <div className="gap-4 grid grid-cols-3">
+                    <div className="gap-4 grid grid-cols-3 ">
                         {data
                             .filter((item) =>
                                 item.BarajKuyuAdi.toLowerCase().includes(
@@ -102,103 +102,106 @@ const DamFillRate = () => {
                             .map((item, index) => (
                                 <div
                                     key={index}
-                                    className="p-6 rounded-xl border items-center my-2 bg-white">
+                                    className="p-6 rounded-xl border items-center my-2 bg-white shadow-md hover:border-gray-400 transition duration-200 ease-in-out transform hover:scale-105 hover:shadow-md">
                                     <div>
                                         <p class="text-gray-700 font-bold">
-                                            BarajKuyuAdi{" "}
-                                        </p>
-                                        <p class="text-gray-500">
-                                            {item.BarajKuyuAdi}
+                                            Baraj Kuyu Adi :{" "}
+                                            <span className="text-gray-500">
+                                                {item.BarajKuyuAdi}
+                                            </span>
                                         </p>
                                     </div>
                                     <div>
                                         <p class="text-gray-700 font-bold">
-                                            SuDurumu{" "}
-                                        </p>
-                                        <p class="text-gray-500">
-                                            {formatNumber(item.SuDurumu)}
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <p class="text-gray-700 font-bold">
-                                            SuYuksekligi{" "}
-                                        </p>
-                                        <p class="text-gray-500">
-                                            {item.SuYuksekligi}
+                                            Su Durumu :{" "}
+                                            <span className="text-gray-500">
+                                                {formatNumber(item.SuDurumu)}
+                                            </span>
                                         </p>
                                     </div>
                                     <div>
                                         <p class="text-gray-700 font-bold">
-                                            KullanılabilirGolSuHacmi{" "}
-                                        </p>
-                                        <p class="text-gray-500">
-                                            {formatNumber(
-                                                item.KullanılabilirGolSuHacmi
-                                            )}
-                                        </p>
-                                    </div>
-
-                                    <div>
-                                        <p class="text-gray-700 font-bold">
-                                            TuketilebilirSuKapasitesi
-                                        </p>
-                                        <p class="text-gray-500">
-                                            {formatNumber(
-                                                item.TuketilebilirSuKapasitesi
-                                            )}
+                                            Su Yuksekligi :{" "}
+                                            <span className="text-gray-500">
+                                                {item.SuYuksekligi}
+                                            </span>
                                         </p>
                                     </div>
                                     <div>
                                         <p class="text-gray-700 font-bold">
-                                            MaksimumSuKapasitesi
-                                        </p>
-                                        <p class="text-gray-500">
-                                            {formatNumber(
-                                                item.MaksimumSuKapasitesi
-                                            )}
+                                            Kullanılabilir Gol Su Hacmi :{" "}
+                                            <span className="text-gray-500">
+                                                {formatNumber(
+                                                    item.KullanılabilirGolSuHacmi
+                                                )}
+                                            </span>
                                         </p>
                                     </div>
 
                                     <div>
                                         <p class="text-gray-700 font-bold">
-                                            MinimumSuYuksekligi
+                                            Tuketilebilir Su Kapasitesi :{" "}
+                                            <span className="text-gray-500">
+                                                {formatNumber(
+                                                    item.TuketilebilirSuKapasitesi
+                                                )}
+                                            </span>
                                         </p>
-                                        <p class="text-gray-500">
-                                            {item.MinimumSuYuksekligi}
+                                        <p class="text-gray-500"></p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-700 font-bold">
+                                            Maksimum Su Kapasitesi :{" "}
+                                            <span className="text-gray-500">
+                                                {formatNumber(
+                                                    item.MaksimumSuKapasitesi
+                                                )}
+                                            </span>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <p class="text-gray-700 font-bold">
+                                            Minimum Su Yuksekligi :{" "}
+                                            <span className="text-gray-500">
+                                                {item.MinimumSuYuksekligi}
+                                            </span>
                                         </p>
                                     </div>
                                     <div>
                                         <p class="text-gray-700 font-bold">
-                                            DolulukOrani
-                                        </p>
-                                        <p class="text-gray-500">
-                                            {item.DolulukOrani}
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <p class="text-gray-700 font-bold">
-                                            DurumTarihi
-                                        </p>
-                                        <p class="text-gray-500">
-                                            {formatDateTime(item.DurumTarihi)}
+                                            Doluluk Orani :{" "}
+                                            <span className="text-gray-500">
+                                                {item.DolulukOrani} %
+                                            </span>
                                         </p>
                                     </div>
                                     <div>
                                         <p class="text-gray-700 font-bold">
-                                            MinimumSuKapasitesi
-                                        </p>
-                                        <p class="text-gray-500">
-                                            {formatNumber(
-                                                item.MinimumSuKapasitesi
-                                            )}
+                                            Durum Tarihi :{" "}
+                                            <span className="text-gray-500">
+                                                {formatDateTime(
+                                                    item.DurumTarihi
+                                                )}
+                                            </span>
                                         </p>
                                     </div>
                                     <div>
                                         <p class="text-gray-700 font-bold">
-                                            MaksimumSuYuksekligi
+                                            Minimum Su Kapasitesi :{" "}
+                                            <span className="text-gray-500">
+                                                {formatNumber(
+                                                    item.MinimumSuKapasitesi
+                                                )}
+                                            </span>
                                         </p>
-                                        <p class="text-gray-500">
-                                            {item.MaksimumSuYuksekligi}
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-700 font-bold">
+                                            Maksimum Su Yuksekligi :{" "}
+                                            <span className="text-gray-500">
+                                                {item.MaksimumSuYuksekligi}
+                                            </span>
                                         </p>
                                     </div>
                                 </div>

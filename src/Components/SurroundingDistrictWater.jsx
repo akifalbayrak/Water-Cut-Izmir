@@ -79,7 +79,7 @@ const SurroundingDistrictWater = () => {
                     <IoIosSearch className="text-gray-500" />
                 </span>
             </div>
-            <div className="my-4 p-6 bg-gray-50 rounded-lg shadow-lg">
+            <div className="my-4 p-6  rounded-lg shadow-lg">
                 {loading && <p className="text-gray-500">Loading...</p>}
                 {!loading && (
                     <>
@@ -105,18 +105,12 @@ const SurroundingDistrictWater = () => {
                                                     key={noktaIndex}
                                                     className="mt-6 bg-white p-4 rounded-lg shadow-inner">
                                                     <p className="font-medium text-gray-800">
-                                                        Nokta ID:{" "}
-                                                        <span className="font-normal">
-                                                            {nokta.NoktaKodu}
-                                                        </span>
-                                                    </p>
-                                                    <p className="font-medium text-gray-800">
                                                         Nokta Adres:{" "}
                                                         <span className="font-normal">
                                                             {nokta.Adres}
                                                         </span>
                                                     </p>
-                                                    <hr className="border-blue-300 my-3" />
+                                                    <hr className="border-gray-200 my-3" />
                                                     <div>
                                                         {nokta.NoktaAnalizleri.map(
                                                             (

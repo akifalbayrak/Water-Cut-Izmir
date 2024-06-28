@@ -6,7 +6,6 @@ const DepartmentCashDesk = () => {
     const [data1, setData1] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [searchTerm1, setSearchTerm1] = useState("");
-    const [limitor, setLimitor] = useState(10);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -39,15 +38,13 @@ const DepartmentCashDesk = () => {
 
     const changeInput = (e) => {
         setSearchTerm(e.target.value.toLowerCase());
-    };
-    const changeInput1 = (e) => {
         setSearchTerm1(e.target.value.toLowerCase());
     };
 
     const filteredData = data.filter(
         (item) =>
-            item.SubeAdresi?.toLowerCase().includes(searchTerm) ||
             item.SubeAdi?.toLowerCase().includes(searchTerm) ||
+            item.SubeAdresi?.toLowerCase().includes(searchTerm) ||
             item.SubeTelefon?.includes(searchTerm)
     );
 
@@ -55,11 +52,11 @@ const DepartmentCashDesk = () => {
         (item) =>
             item.VezneAdi?.toLowerCase().includes(searchTerm1) ||
             item.VezneAdresi?.toLowerCase().includes(searchTerm1) ||
-            item.Bolge?.includes(searchTerm1)
+            item.Bolge?.toLowerCase().includes(searchTerm1)
     );
 
     return (
-        <main className="DepartmentCashDesk my-4 px-8 py-4 lg:w-3/4 mx-auto bg-gray-100">
+        <main className="DepartmentCashDesk my-4 px-8 py-4 lg:w-3/4 mx-auto ">
             <div className="container mx-auto flex flex-col justify-center items-center">
                 <div className="items-center mb-2">
                     <h1 className="text-3xl font-bold text-center text-gray-800">
@@ -67,29 +64,17 @@ const DepartmentCashDesk = () => {
                     </h1>
                 </div>
             </div>
-            <div className="flex my-2">
-                <div className="relative flex-grow">
-                    <input
-                        type="text"
-                        placeholder="Şube Ara"
-                        onChange={changeInput}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    />
-                    <span className="absolute inset-y-0 right-0 flex items-center pr-3">
-                        <IoIosSearch className="text-gray-500" />
-                    </span>
-                </div>
-                <div className="relative flex-grow ml-2">
-                    <input
-                        type="text"
-                        placeholder="Vezne Ara"
-                        onChange={changeInput1}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    />
-                    <span className="absolute inset-y-0 right-0 flex items-center pr-3">
-                        <IoIosSearch className="text-gray-500" />
-                    </span>
-                </div>
+
+            <div className="relative mx-auto max-w-md my-2">
+                <input
+                    type="text"
+                    placeholder="Şube & Vezne Ara"
+                    onChange={changeInput}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+                <span className="absolute inset-y-0 right-0 flex items-center pr-3">
+                    <IoIosSearch className="text-gray-500" />
+                </span>
             </div>
             <div className="card-container my-4 p-4 bg-white rounded-lg shadow-md">
                 {loading && (
@@ -110,7 +95,7 @@ const DepartmentCashDesk = () => {
                 )}
 
                 {!loading &&
-                    filteredData.slice(0, limitor).map((item, index) => (
+                    filteredData.map((item, index) => (
                         <div
                             key={index}
                             className={`text-sm my-2 ${
@@ -138,7 +123,7 @@ const DepartmentCashDesk = () => {
                     </p>
                 )}
                 {!loading &&
-                    filteredData1.slice(0, limitor).map((item, index) => (
+                    filteredData1.map((item, index) => (
                         <div
                             key={index}
                             className={`text-sm my-2 rounded-lg ${
