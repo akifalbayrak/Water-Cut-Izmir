@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
 
 const DailyWater = () => {
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
-    const [selectedItem, setSelectedItem] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -13,66 +12,61 @@ const DailyWater = () => {
                     "https://openapi.izmir.bel.tr/api/izsu/gunluksuuretimi"
                 );
                 const jsonData = await response.json();
-                setData(jsonData);
+                setData(jsonData.BarajKuyuUretimleri);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
         };
 
         fetchData();
-        // Set up interval to fetch data every minute
-        const interval = setInterval(fetchData, 600000); // 600000 milliseconds = 10 minute
-
-        // Clean up interval on component unmount
-        return () => clearInterval(interval);
     }, []);
 
-    // Function to format date and time
-    const formatDateTime = (dateTimeString) => {
-        const dateTime = new Date(dateTimeString);
-        return dateTime.toLocaleDateString("tr-TR");
-    };
+    // Filter data based on search term
+    const filteredData = data.filter((item) =>
+        item.BarajKuyuAdi.toLocaleLowerCase("tr-TR").includes(
+            searchTerm.toLowerCase()
+        )
+    );
 
     return (
-        <main className="DailyWater px-8 py-4 lg:w-3/4 mx-auto ">
-            <div className="container mx-auto flex flex-col justify-center items-center">
-                <div className="items-center mb-2">
-                    <h1 className="text-3xl font-bold text-center text-gray-800">
-                        Günlük Su Üretimi
-                    </h1>
-                    <h3 className="text-2xl text-center text-gray-800">
-                        {formatDateTime(data.UretimTarihi)}
-                    </h3>
-                </div>
-            </div>
-            <div className="card-container my-4 p-4 rounded-lg shadow-md">
-                {data.BarajKuyuUretimleri && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {data.BarajKuyuUretimleri.map((item) => (
-                            <div
-                                key={item.BarajKuyuId}
-                                className={`card border rounded-md cursor-pointer shadow-md hover:border-gray-400 transition duration-200 ease-in-out transform hover:scale-105 hover:shadow-md ${
-                                    selectedItem === item ? "bg-gray-200" : ""
-                                }`}>
-                                <div className="card-header flex justify-between px-4 py-2">
-                                    <h2 className="card-title text-lg font-medium text-gray-800">
-                                        {item.BarajKuyuAdi}
-                                    </h2>
-                                    <span className="card-date text-gray-600 text-sm"></span>
-                                </div>
-                                <div className="card-body px-4 py-2">
-                                    <p className="card-value text-gray-800 font-bold">
-                                        {item.UretimMiktari.toLocaleString()} m³
-                                    </p>
-                                    <p className="card-type text-gray-600 text-sm">
-                                        {item.TurAdi}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
-            </div>
+        <main className="p-8 w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] mx-auto gap-4 flex flex-col">
+            <section className="flex flex-col justify-center items-center gap-4">
+                <h1 className="text-3xl font-bold text-center">
+                    Günlük Su Üretimi
+                </h1>
+                <article className="flex items-center px-3 bg-white py-2 rounded-3xl border border-gray-300 text-2xl w-full md:w-[80%] lg:w-[50%]">
+                    <IoIosSearch className="mr-2" />
+                    <input
+                        type="text"
+                        placeholder="Mahalle veya ilçe ara"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="text-lg bg-transparent border-none rounded w-full focus:outline-none focus:shadow-outline"
+                    />
+                </article>
+            </section>
+            {filteredData.map((item) => (
+                <section
+                    key={item.BarajKuyuId}
+                    className="p-4 border bg-white border-gray-300 rounded-2xl cursor-pointer hover:border-gray-400">
+                    <article className="my-4 flex flex-col md:flex-row items-center gap-4">
+                        <h2 className="text-xl font-semibold my-2">
+                            {item.BarajKuyuAdi}
+                        </h2>
+                        <p className="border w-fit p-2 rounded-md text-center">
+                            {item.UretimMiktari.toLocaleString()} m³
+                        </p>
+                        <p className="border w-fit p-2 rounded-md text-center">
+                            {item.TurAdi}
+                        </p>
+                    </article>
+                </section>
+            ))}
+            {filteredData.length === 0 && (
+                <p className="text-center text-lg">
+                    Aradığınız kriterlere uygun veri bulunamadı.
+                </p>
+            )}
         </main>
     );
 };

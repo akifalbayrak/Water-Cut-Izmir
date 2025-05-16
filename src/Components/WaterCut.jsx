@@ -87,7 +87,7 @@ const WaterCut = () => {
                 <h1 className="text-3xl font-bold text-center">
                     Aktif Su Kesintileri
                 </h1>
-                <article className="flex items-center px-3 bg-white py-2 rounded-3xl border border-gray-300 text-2xl w-[80%] lg:w-[50%]">
+                <article className="flex items-center px-3 bg-white py-2 rounded-3xl border border-gray-300 text-2xl w-full md:w-[80%] lg:w-[50%]">
                     <IoIosSearch className="mr-2" />
                     <input
                         type="text"
@@ -161,7 +161,7 @@ const WaterCut = () => {
             ))}
             {filteredData.length === 0 && (
                 <p className="text-center text-lg">
-                    Aradığınız kriterlere uygun kesinti bulunamadı.
+                    Aradığınız kriterlere uygun veri bulunamadı.
                 </p>
             )}
         </main>
