@@ -17,7 +17,7 @@ const Footer = () => {
     }, [showModal]);
 
     return (
-        <footer className="bg-gray-800 text-white py-8 px-4 mt-12">
+        <footer className="bg-gray-800 text-white py-8 px-4 mt-auto">
             <div className="container mx-auto">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-6">
                     <div className="text-center md:text-left">
