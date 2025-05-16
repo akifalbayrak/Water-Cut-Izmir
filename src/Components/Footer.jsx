@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 const Footer = () => {
@@ -7,6 +7,14 @@ const Footer = () => {
     const toggleModal = () => {
         setShowModal(!showModal);
     };
+
+    useEffect(() => {
+        if (showModal) {
+            document.body.classList.add("overflow-hidden");
+        } else {
+            document.body.classList.remove("overflow-hidden");
+        }
+    }, [showModal]);
 
     return (
         <footer className="bg-gray-800 text-white py-8 px-4 mt-12">
