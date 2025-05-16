@@ -9,7 +9,7 @@ const Footer = () => {
     };
 
     return (
-        <footer className="bg-gray-200 p-4 text-center justify-center flex items-center w-full">
+        <footer className="bg-gray-200 p-4 text-center justify-center flex items-center w-full mt-auto">
             <p className="mx-3">© 2024 Tüm Hakları Saklıdır.</p>|
             <p className="mx-3">
                 Veriler
