@@ -82,7 +82,7 @@ const WaterCut = () => {
     });
 
     return (
-        <main className="p-8 w-full lg:w-3/4 mx-auto gap-4 flex flex-col">
+        <main className="p-8 w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] mx-auto gap-4 flex flex-col">
             <section className="flex flex-col justify-center items-center gap-4">
                 <h1 className="text-3xl font-bold text-center">
                     Aktif Su Kesintileri
@@ -103,7 +103,7 @@ const WaterCut = () => {
                     className="p-4 border bg-white border-gray-300 rounded-2xl cursor-pointer hover:border-gray-400"
                     key={index}
                     onClick={() => handleItemClick(item)}>
-                    <article className="my-4 flex flex-row items-center gap-4">
+                    <article className="my-4 flex flex-col md:flex-row items-center gap-4">
                         <h2 className="text-xl font-semibold my-2">
                             {item.IlceAdi}
                         </h2>

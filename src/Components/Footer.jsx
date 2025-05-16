@@ -9,8 +9,9 @@ const Footer = () => {
     };
 
     return (
-        <footer className="bg-gray-200 p-4 text-center justify-center flex items-center w-full mt-auto">
-            <p className="mx-3">© 2024 Tüm Hakları Saklıdır.</p>|
+        <footer className="bg-gray-200 p-4 text-center justify-center flex flex-col lg:flex-row gap-4 lg:gap-0 items-center w-full mt-auto">
+            <p className="mx-3">© 2024 Tüm Hakları Saklıdır.</p>
+            <span className="hidden lg:flex">|</span>
             <p className="mx-3">
                 Veriler
                 <a
@@ -21,7 +22,7 @@ const Footer = () => {
                     Açık Veri İzmir Portalına Aittir.
                 </a>
             </p>
-            |
+            <span className="hidden lg:flex">|</span>
             <a
                 className="mx-3 my-auto"
                 href="https://github.com/akifalbayrak"
@@ -36,7 +37,7 @@ const Footer = () => {
                 rel="noopener noreferrer">
                 <FaGithub className="mx-2" />
             </a>
-            |
+            <span className="hidden lg:flex">|</span>
             <button className="mx-3 my-auto" onClick={toggleModal}>
                 Gizlilik Politikası
             </button>
