@@ -18,6 +18,7 @@ const WaterCut = () => {
                 console.error("Error fetching data:", error);
             }
         };
+
         fetchData();
     }, []);
 

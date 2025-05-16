@@ -45,9 +45,9 @@ const DailyWater = () => {
                     />
                 </article>
             </section>
-            {filteredData.map((item) => (
+            {filteredData.map((item, index) => (
                 <section
-                    key={item.BarajKuyuId}
+                    key={index}
                     className="p-4 border bg-white border-gray-300 rounded-2xl cursor-pointer hover:border-gray-400">
                     <article className="my-4 flex flex-col md:flex-row items-center gap-4">
                         <h2 className="text-xl font-semibold my-2">
