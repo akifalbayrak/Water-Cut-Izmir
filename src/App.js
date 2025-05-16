@@ -1,6 +1,4 @@
-// App.js
-import React from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom"; // Import Routes
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
@@ -20,7 +18,7 @@ import DepartmentCashDesk from "./Components/DepartmentCashDesk";
 function App() {
     return (
         <BrowserRouter>
-            <div className="min-h-screen flex flex-col">
+            <main className="min-h-screen flex flex-col bg-[#f8f8f8]">
                 <Header />
                 <Routes>
                     <Route
@@ -62,7 +60,7 @@ function App() {
                     />
                 </Routes>
                 <Footer />
-            </div>
+            </main>
         </BrowserRouter>
     );
 }

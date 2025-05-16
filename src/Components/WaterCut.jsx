@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { IoIosSearch } from "react-icons/io";
 
 const WaterCut = () => {
@@ -18,13 +18,7 @@ const WaterCut = () => {
                 console.error("Error fetching data:", error);
             }
         };
-
         fetchData();
-        // Set up interval to fetch data every minute
-        const interval = setInterval(fetchData, 600000); // 600000 milliseconds = 10 minute
-
-        // Clean up interval on component unmount
-        return () => clearInterval(interval);
     }, []);
 
     // Function to format date and time
@@ -48,7 +42,7 @@ const WaterCut = () => {
         // Calculate the difference in milliseconds
         const diff = endDate.getTime() - now.getTime();
         if (diff < 0) {
-            return "";
+            return null;
         }
 
         // Convert milliseconds to minutes and seconds
@@ -75,123 +69,101 @@ const WaterCut = () => {
         }
     };
 
-    // Function to filter data based on search term
+    // Function to filter data based on search term (ilçe or mahalle)
     const filteredData = data.filter((item) => {
-        const searchTermsArray = searchTerm
-            .split(",")
-            .map((term) => term.trim().toLowerCase());
-        return searchTermsArray.some(
-            (searchTerm) =>
-                item.IlceAdi.toLowerCase().includes(searchTerm) ||
-                item.Mahalleler.toLowerCase().includes(searchTerm)
+        return (
+            item.IlceAdi.toLocaleLowerCase("tr-TR").includes(
+                searchTerm.toLocaleLowerCase("tr-TR")
+            ) ||
+            item.Mahalleler.toLocaleLowerCase("tr-TR").includes(
+                searchTerm.toLocaleLowerCase("tr-TR")
+            )
         );
     });
 
     return (
-        <main className="WaterCut p-8 lg:w-3/4 mx-auto ">
-            <div className="container mx-auto flex flex-col justify-center items-center">
-                <div className="flex items-center mb-8">
-                    <h1 className="text-3xl font-bold text-center">
-                        Aktif Su Kesintileri
-                    </h1>
-                </div>
-                <div className="search-bar flex items-center px-3 rounded-3xl border border-gray-300 bg-gray-200 text-2xl w-full md:w-1/2">
-                    <IoIosSearch className="mr-2 text-lg" />
+        <main className="p-8 w-full lg:w-3/4 mx-auto gap-4 flex flex-col">
+            <section className="flex flex-col justify-center items-center gap-4">
+                <h1 className="text-3xl font-bold text-center">
+                    Aktif Su Kesintileri
+                </h1>
+                <article className="flex items-center px-3 bg-white py-2 rounded-3xl border border-gray-300 text-2xl w-[80%] lg:w-[50%]">
+                    <IoIosSearch className="mr-2" />
                     <input
                         type="text"
                         placeholder="Mahalle veya ilçe ara"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className=" bg-gray-200 text-lg shadow border-none rounded w-full py-2 px-3 text-gray-700 leading-tight "
+                        className="text-lg bg-transparent border-none rounded w-full focus:outline-none focus:shadow-outline"
                     />
-                </div>
-            </div>
-            <div className="card-container my-4 p-8">
-                {filteredData.map((item, index) => (
-                    <div
-                        className="card my-4 px-16 py-8 border border-gray-300 rounded-3xl cursor-pointer hover:border-gray-400 transition duration-200 ease-in-out transform hover:scale-105 hover:shadow-md"
-                        key={index}
-                        onClick={() => handleItemClick(item)}>
+                </article>
+            </section>
+            {filteredData.map((item, index) => (
+                <section
+                    className="p-4 border bg-white border-gray-300 rounded-2xl cursor-pointer hover:border-gray-400"
+                    key={index}
+                    onClick={() => handleItemClick(item)}>
+                    <article className="my-4 flex flex-row items-center gap-4">
                         <h2 className="text-xl font-semibold my-2">
                             {item.IlceAdi}
                         </h2>
-                        <div className="my-4">
-                            <strong className="text-black mx-3 mb-2">
-                                Mahalleler
-                            </strong>
-                            <div className="flex flex-wrap gap-2 mt-2 md:flex-wrap-wrap md:justify-content-center">
-                                {item.Mahalleler.split(",").map(
-                                    (mahalle, index) => (
-                                        <span
-                                            key={index}
-                                            className="border p-2 mx-2 md:mx-4 lg:mx-6 rounded-md text-center">
-                                            {mahalle.trim()}
-                                        </span>
-                                    )
-                                )}
-                            </div>
-                        </div>
-
-                        {selectedItem === item && (
-                            <div>
+                        {item.Mahalleler.split(",").map((mahalle, index) => (
+                            <p
+                                key={index}
+                                className="border w-fit p-2 rounded-md text-center">
+                                {mahalle}
+                            </p>
+                        ))}
+                    </article>
+                    {selectedItem === item && (
+                        <article>
+                            <p className="my-4">
+                                <strong className="mr-1">Açıklama:</strong>
+                                {item.Aciklama}
+                            </p>
+                            <p className="my-4">
+                                <strong className="mr-1">
+                                    Kesinti Süresi:
+                                </strong>
+                                <span>{item.KesintiSuresi}</span>
+                            </p>
+                            <p className="my-4">
+                                <strong className="mr-1">Birim:</strong>
+                                {item.Birim}
+                            </p>
+                            <p className="my-4">
+                                <strong className="mr-1">Tip:</strong>
+                                {item.Tip}
+                            </p>
+                            <p className="my-4">
+                                <strong className="mr-1">
+                                    Kesinti Tarihi:
+                                </strong>
+                                {formatDateTime(item.KesintiTarihi)}
+                            </p>
+                            <p className="my-4">
+                                <strong className="mr-1">
+                                    Arıza Giderilme Tarihi:
+                                </strong>
+                                {formatDateTime(item.ArizaGiderilmeTarihi)}
+                            </p>
+                            {remainingTime(item.ArizaGiderilmeTarihi) && (
                                 <p className="my-4">
-                                    <strong className="text-black mx-3">
-                                        Kesinti Tarihi:
+                                    <strong className="mr-1">
+                                        Arızanın Giderilme Süresine Kalan Süre:
                                     </strong>
-                                    {formatDateTime(item.KesintiTarihi)}
+                                    {remainingTime(item.ArizaGiderilmeTarihi)}
                                 </p>
-                                <p className="my-4">
-                                    <strong className="text-black mx-3">
-                                        Açıklama:
-                                    </strong>
-                                    {item.Aciklama}
-                                </p>
-                                <p className="my-4">
-                                    <strong className="text-black mx-3">
-                                        Tip:
-                                    </strong>
-                                    {item.Tip}
-                                </p>
-                                <p className="my-4">
-                                    <strong className="text-black mx-3">
-                                        Ariza Giderilme Tarihi:
-                                    </strong>
-                                    {formatDateTime(item.ArizaGiderilmeTarihi)}
-                                </p>
-                                <p className="my-4">
-                                    <strong className="text-black mx-3">
-                                        Birim:
-                                    </strong>
-                                    {item.Birim}
-                                </p>
-                                <p className="my-4">
-                                    <strong className="text-black mx-3">
-                                        Kesinti Suresi :
-                                    </strong>
-                                    {item.KesintiSuresi}
-                                </p>
-                                <p className="my-4">
-                                    <strong className="text-black mx-3">
-                                        Guncelleme Tarihi:
-                                    </strong>
-                                    {formatDateTime(item.GuncellemeTarihi)}
-                                </p>
-                                {remainingTime(item.ArizaGiderilmeTarihi) && (
-                                    <p className="my-4">
-                                        <strong className="text-black mx-3">
-                                            Arızanın Giderilme Süresine Kalan
-                                            Süre:
-                                        </strong>
-                                        {remainingTime(
-                                            item.ArizaGiderilmeTarihi
-                                        )}
-                                    </p>
-                                )}
-                            </div>
-                        )}
-                    </div>
-                ))}
-            </div>
+                            )}
+                        </article>
+                    )}
+                </section>
+            ))}
+            {filteredData.length === 0 && (
+                <p className="text-center text-lg">
+                    Aradığınız kriterlere uygun kesinti bulunamadı.
+                </p>
+            )}
         </main>
     );
 };
