@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
 
 const WaterCut = () => {
@@ -69,7 +69,7 @@ const WaterCut = () => {
         }
     };
 
-    // Function to filter data based on search term (ilçe or mahalle)
+    // Function to filter data based on search term
     const filteredData = data.filter((item) => {
         return (
             item.IlceAdi.toLocaleLowerCase("tr-TR").includes(
