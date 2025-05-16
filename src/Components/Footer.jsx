@@ -48,7 +48,7 @@ const Footer = () => {
                     </div>
                     <button
                         onClick={toggleModal}
-                        className="px-4 py-2 bg-blue-700 hover:bg-blue-800 rounded-md text-sm font-medium transition-colors">
+                        className="text-sm font-medium">
                         Gizlilik Politikası
                     </button>
                 </div>
@@ -60,12 +60,10 @@ const Footer = () => {
             {showModal && (
                 <div
                     className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
-                    onClick={toggleModal} // Click outside closes the modal
-                >
+                    onClick={toggleModal}>
                     <div
                         className="bg-gray-800 rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto"
-                        onClick={(e) => e.stopPropagation()} // Prevent click inside from closing
-                    >
+                        onClick={(e) => e.stopPropagation()}>
                         <div className="p-6">
                             <div className="flex justify-between items-center mb-4">
                                 <h2 className="text-xl font-bold">
