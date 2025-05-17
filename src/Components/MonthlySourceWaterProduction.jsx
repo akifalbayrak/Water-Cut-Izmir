@@ -1,21 +1,18 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
 
 const MonthlySourceWaterProduction = () => {
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
-    const [limitor, setLimitor] = useState(10);
-    const [loading, setLoading] = useState(false);
+    const [visibleCount, setVisibleCount] = useState(10);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                setLoading(true);
                 const response = await fetch(
                     "https://openapi.izmir.bel.tr/api/izsu/suuretiminindagilimi"
                 );
                 const jsonData = await response.json();
-                setLoading(false);
                 setData(jsonData);
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -23,14 +20,37 @@ const MonthlySourceWaterProduction = () => {
         };
 
         fetchData();
-        // Set up interval to fetch data every minute
-        const interval = setInterval(fetchData, 600000); // 600000 milliseconds = 10 minute
-
-        // Clean up interval on component unmount
-        return () => clearInterval(interval);
     }, []);
 
-    // Function to format date and time
+    // Infinite scroll
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollTop = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const fullHeight = document.documentElement.scrollHeight;
+
+            // Check if user reached bottom
+            if (scrollTop + windowHeight >= fullHeight - 100) {
+                setVisibleCount((prev) => prev + 10);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    // Filter data based on search term (always search all data)
+    const filteredData = data.filter((item) =>
+        item.UretimKaynagi?.toLocaleLowerCase("tr-TR").includes(
+            searchTerm.toLowerCase()
+        )
+    );
+
+    // If searching, show all matching results; otherwise, limit by visibleCount
+    const displayedData = searchTerm
+        ? filteredData
+        : filteredData.slice(0, visibleCount);
+
     const formatMonth = (monthNum) => {
         return [
             "Ocak",
@@ -48,114 +68,48 @@ const MonthlySourceWaterProduction = () => {
         ][monthNum - 1];
     };
 
-    const changeInput = (e) => {
-        setSearchTerm(e.target.value.toLowerCase());
-        data.filter((item) => {
-            if (item.UretimKaynagi.includes(searchTerm)) {
-                return item;
-            }
-        });
-    };
-
-    useEffect(() => {
-        const handleScroll = () => {
-            if (
-                window.innerHeight + document.documentElement.scrollTop ===
-                document.documentElement.offsetHeight
-            ) {
-                // User has scrolled to the bottom
-                setLimitor((prev) => prev + 20);
-            }
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
-
     return (
-        <main className="MonthlySourceWaterProduction px-8 py-4 lg:w-3/4 mx-auto">
-            <div className="container mx-auto flex flex-col justify-center items-center">
-                <div className="items-center mb-2">
-                    <h1 className="text-3xl font-bold text-center text-gray-800">
-                        Su Üretiminin Aylara ve Kaynaklara Göre Dağılımı
-                    </h1>
-                </div>
-            </div>
-            <div className="relative mx-auto max-w-md my-2">
-                <input
-                    type="text"
-                    placeholder="Ara"
-                    onChange={changeInput}
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-                <span className="absolute inset-y-0 right-0 flex items-center pr-3">
-                    <IoIosSearch className="text-gray-500" />
-                </span>
-            </div>
-            <div className="card-container my-4 p-4  rounded-lg shadow-md">
-                {loading && <p>Loading...</p>}
-                {data && (
-                    <div className="gap-4">
-                        {data
-                            .filter((item) =>
-                                item.UretimKaynagi.toLowerCase().includes(
-                                    searchTerm.toLowerCase()
-                                )
-                            )
-                            .slice(0, limitor)
-                            .map((item, index) => (
-                                <div
-                                    key={index}
-                                    className="p-6 rounded-xl border grid grid-cols-5 items-center space-x-4 my-2 bg-white shadow-md hover:border-gray-400 transition duration-200 ease-in-out transform hover:scale-105 hover:shadow-md">
-                                    <div>
-                                        <p class="text-gray-700 font-bold">
-                                            Uretim Kaynagi
-                                        </p>
-                                        <p class="text-gray-500">
-                                            {item.UretimKaynagi}
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <p class="text-gray-700 font-bold">
-                                            Uretim Miktari
-                                        </p>
-                                        <p class="text-gray-500">
-                                            {item.UretimMiktari / 1000}
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <p class="text-gray-700 font-bold">
-                                            Yil
-                                        </p>
-                                        <p class="text-gray-500">{item.Yil}</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-gray-700 font-bold">
-                                            Ay
-                                        </p>
-                                        <p class="text-gray-500">
-                                            {formatMonth(item.Ay)}
-                                        </p>
-                                    </div>
-                                </div>
-                            ))}
-                        {data.filter((item) =>
-                            item.UretimKaynagi.toLowerCase().includes(
-                                searchTerm.toLowerCase()
-                            )
-                        ).length === 0 && (
-                            <p>
-                                No data found for{" "}
-                                <span className="italic font-bold">
-                                    {searchTerm}
-                                </span>
-                            </p>
-                        )}
-                    </div>
-                )}
-            </div>
+        <main className="p-8 w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] mx-auto gap-4 flex flex-col">
+            <section className="flex flex-col justify-center items-center gap-4">
+                <h1 className="text-3xl font-bold text-center">
+                    Su Üretiminin Aylara ve Kaynaklara Göre Dağılımı
+                </h1>
+                <article className="flex items-center px-3 bg-white py-2 rounded-3xl border border-gray-300 text-2xl w-full md:w-[80%] lg:w-[50%]">
+                    <IoIosSearch className="mr-2" />
+                    <input
+                        type="text"
+                        placeholder="Üretim kaynağı ara"
+                        value={searchTerm}
+                        onChange={(e) => {
+                            setSearchTerm(e.target.value);
+                            setVisibleCount(10);
+                        }}
+                        className="text-lg bg-transparent border-none rounded w-full focus:outline-none focus:shadow-outline"
+                    />
+                </article>
+            </section>
+            {displayedData.map((item, index) => (
+                <section
+                    key={index}
+                    className="p-4 border bg-white border-gray-300 rounded-2xl cursor-pointer hover:border-gray-400">
+                    <article className="my-4 flex flex-col md:flex-row items-center gap-4">
+                        <h2 className="text-xl font-semibold my-2">
+                            {item.UretimKaynagi}
+                        </h2>
+                        <p className="border w-fit p-2 rounded-md text-center">
+                            {(item.UretimMiktari / 1000).toFixed(2)} m³
+                        </p>
+                        <p className="border w-fit p-2 rounded-md text-center">
+                            {formatMonth(item.Ay)}
+                        </p>
+                    </article>
+                </section>
+            ))}
+            {displayedData.length === 0 && (
+                <p className="text-center text-lg">
+                    Aradığınız kriterlere uygun veri bulunamadı.
+                </p>
+            )}
         </main>
     );
 };
