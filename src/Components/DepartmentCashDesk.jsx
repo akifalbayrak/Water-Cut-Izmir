@@ -62,37 +62,35 @@ const DepartmentCashDesk = () => {
                     />
                 </article>
             </section>
-            <section className="flex flex-col gap-4">
-                {filteredData.map((item, index) => (
-                    <section
-                        onClick={() => {
-                            window.open(
-                                `https://www.google.com/maps?q=${item.ENLEM},${item.BOYLAM}`,
-                                "_blank"
-                            );
-                        }}
-                        key={index}
-                        className="p-4 border bg-white border-gray-300 rounded-2xl cursor-pointer hover:border-gray-400">
-                        <article className="my-4 flex flex-col md:flex-row items-center gap-4">
-                            <h2 className="text-xl font-semibold my-2">
-                                {item.SubeAdi || item.VezneAdi}
-                            </h2>
-                            <p className="border w-fit p-2 rounded-md text-center">
-                                {item.SubeAdi ? `Şube` : `Vezne`}
-                            </p>
-                            <p className="border w-fit p-2 rounded-md text-center">
-                                {item.VezneAdresi || item.SubeAdresi}
-                            </p>
-                            <p
-                                className={`mx-auto md:mr-0 px-3 py-1 rounded-md text-white text-sm ${
-                                    item.AktifMi ? "bg-green-500" : "bg-red-500"
-                                }`}>
-                                {item.AktifMi ? "Aktif" : "Pasif"}
-                            </p>
-                        </article>
-                    </section>
-                ))}
-            </section>
+            {filteredData.map((item, index) => (
+                <section
+                    onClick={() => {
+                        window.open(
+                            `https://www.google.com/maps?q=${item.ENLEM},${item.BOYLAM}`,
+                            "_blank"
+                        );
+                    }}
+                    key={index}
+                    className="p-4 border bg-white border-gray-300 rounded-2xl cursor-pointer hover:border-gray-400">
+                    <article className="my-4 flex flex-col md:flex-row items-center gap-4">
+                        <h2 className="text-xl font-semibold my-2">
+                            {item.SubeAdi || item.VezneAdi}
+                        </h2>
+                        <p className="border w-fit p-2 rounded-md text-center">
+                            {item.SubeAdi ? `Şube` : `Vezne`}
+                        </p>
+                        <p className="border w-fit p-2 rounded-md text-center">
+                            {item.VezneAdresi || item.SubeAdresi}
+                        </p>
+                        <p
+                            className={`mx-auto md:mr-0 px-3 py-1 rounded-md text-white text-sm ${
+                                item.AktifMi ? "bg-green-500" : "bg-red-500"
+                            }`}>
+                            {item.AktifMi ? "Aktif" : "Pasif"}
+                        </p>
+                    </article>
+                </section>
+            ))}
         </main>
     );
 };
