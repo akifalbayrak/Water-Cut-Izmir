@@ -1,19 +1,19 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
-import Footer from "./Components/Footer";
-import Header from "./Components/Header";
-import WaterCut from "./Components/WaterCut";
-import PoliticsContent from "./Components/PoliticsContent";
-import DailyWater from "./Components/DailyWater";
-import WeeklyWaterAnalysis from "./Components/WeeklyWaterAnalysis";
-import MonthlySourceWaterProduction from "./Components/MonthlySourceWaterProduction";
-import DamFillRate from "./Components/DamFillRate";
-import DamList from "./Components/DamList";
-import DamWaterQuality from "./Components/DamWaterQuality";
-import HistoricalWater from "./Components/HistoricalWater";
-import BlueFlagBeaches from "./Components/BlueFlagBeaches";
-import SurroundingDistrictWater from "./Components/SurroundingDistrictWater";
-import DepartmentCashDesk from "./Components/DepartmentCashDesk";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import WaterCut from "./pages/WaterCut";
+import PoliticsContent from "./pages/PoliticsContent";
+import DailyWater from "./pages/DailyWater";
+import WeeklyWaterAnalysis from "./pages/WeeklyWaterAnalysis";
+import MonthlySourceWaterProduction from "./pages/MonthlySourceWaterProduction";
+import DamFillRate from "./pages/DamFillRate";
+import DamList from "./pages/DamList";
+import DamWaterQuality from "./pages/DamWaterQuality";
+import HistoricalWater from "./pages/HistoricalWater";
+import BlueFlagBeaches from "./pages/BlueFlagBeaches";
+import SurroundingDistrictWater from "./pages/SurroundingDistrictWater";
+import DepartmentCashDesk from "./pages/DepartmentCashDesk";
 
 function App() {
     return (

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
-import Modal from "./Modal";
+import Modal from "../components/Modal";
 import { formatDate } from "../utils/dateHelpers";
 import { useLoading } from "../hooks/useLoading";
-import Loading from "./Loading";
+import Loading from "../components/Loading";
 
 // Individual parameter detail
 const AnalizDetail = ({ eleman }) => {
