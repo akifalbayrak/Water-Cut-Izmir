@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FaMapLocationDot } from "react-icons/fa6";
 import { IoIosSearch } from "react-icons/io";
 
 const HistoricalWater = () => {
@@ -56,14 +57,14 @@ const HistoricalWater = () => {
             {filteredData.map((item, index) => (
                 <section
                     onClick={() => {
+                        if (selectedData === index) {
+                            setSelectedData(null);
+                            return;
+                        }
                         setSelectedData(index);
-                        window.open(
-                            `https://www.google.com/maps?q=${item.ENLEM},${item.BOYLAM}`,
-                            "_blank"
-                        );
                     }}
                     key={index}
-                    className="p-4 border bg-white border-gray-300 rounded-2xl cursor-pointer hover:border-gray-400">
+                    className="p-4 border bg-white border-gray-300 rounded-2xl hover:border-gray-400">
                     <article className="my-4 flex flex-col md:flex-row items-center gap-4">
                         <h2 className="text-xl font-semibold my-2">
                             {item.ADI}
@@ -74,6 +75,15 @@ const HistoricalWater = () => {
                         <p className="border w-fit p-2 rounded-md text-center">
                             {item.MAHALLE}
                         </p>
+                        <FaMapLocationDot
+                            className="cursor-pointer text-2xl text-blue-600"
+                            onClick={() => {
+                                window.open(
+                                    `https://www.google.com/maps?q=${item.ENLEM},${item.BOYLAM}`,
+                                    "_blank"
+                                );
+                            }}
+                        />
                     </article>
                     {selectedData === index && (
                         <article>

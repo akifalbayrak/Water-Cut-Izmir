@@ -49,15 +49,6 @@ const WaterCut = () => {
         return remainingTimeStr.trim();
     }
 
-    // Function to handle item click and toggle selected item
-    const handleItemClick = (item) => {
-        if (selectedItem === item) {
-            setSelectedItem(null);
-        } else {
-            setSelectedItem(item);
-        }
-    };
-
     // Function to filter data based on search term
     const filteredData = data.filter((item) => {
         return (
@@ -91,7 +82,13 @@ const WaterCut = () => {
                 <section
                     className="p-4 border bg-white border-gray-300 rounded-2xl cursor-pointer hover:border-gray-400"
                     key={index}
-                    onClick={() => handleItemClick(item)}>
+                    onClick={() => {
+                        if (selectedItem === item) {
+                            setSelectedItem(null);
+                            return;
+                        }
+                        setSelectedItem(item);
+                    }}>
                     <article className="my-4 flex flex-col md:flex-row items-center gap-4">
                         <h2 className="text-xl font-semibold my-2">
                             {item.IlceAdi}
