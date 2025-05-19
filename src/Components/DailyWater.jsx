@@ -1,18 +1,23 @@
 import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
+import { useLoading } from "../hooks/useLoading";
+import Loading from "./Loading";
 
 const DailyWater = () => {
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
+    const { isLoading, startLoading, stopLoading } = useLoading();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                startLoading();
                 const response = await fetch(
                     "https://openapi.izmir.bel.tr/api/izsu/gunluksuuretimi"
                 );
                 const jsonData = await response.json();
                 setData(jsonData.BarajKuyuUretimleri);
+                stopLoading();
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -45,6 +50,7 @@ const DailyWater = () => {
                     />
                 </article>
             </section>
+            {isLoading && <Loading />}
             {filteredData.map((item, index) => (
                 <section
                     key={index}
@@ -62,7 +68,7 @@ const DailyWater = () => {
                     </article>
                 </section>
             ))}
-            {filteredData.length === 0 && (
+            {!isLoading && filteredData.length === 0 && (
                 <p className="text-center text-lg">
                     Aradığınız kriterlere uygun veri bulunamadı.
                 </p>

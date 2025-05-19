@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
 import { FaMapLocationDot } from "react-icons/fa6";
 import { IoIosSearch } from "react-icons/io";
+import { useLoading } from "../hooks/useLoading";
+import Loading from "./Loading";
 
 const DepartmentCashDesk = () => {
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
+    const { isLoading, startLoading, stopLoading } = useLoading();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                startLoading();
                 const responseSube = await fetch(
                     "https://openapi.izmir.bel.tr/api/izsu/subeler"
                 );
@@ -18,6 +22,7 @@ const DepartmentCashDesk = () => {
                 const jsonDataSube = await responseSube.json();
                 const jsonDataVezne = await responseVezne.json();
                 setData(jsonDataSube.concat(jsonDataVezne));
+                stopLoading();
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -63,6 +68,7 @@ const DepartmentCashDesk = () => {
                     />
                 </article>
             </section>
+            {isLoading && <Loading />}
             {filteredData.map((item, index) => (
                 <section
                     key={index}
@@ -95,7 +101,7 @@ const DepartmentCashDesk = () => {
                     </article>
                 </section>
             ))}
-            {filteredData.length === 0 && (
+            {!isLoading && filteredData.length === 0 && (
                 <p className="text-center text-lg">
                     Aradığınız kriterlere uygun veri bulunamadı.
                 </p>

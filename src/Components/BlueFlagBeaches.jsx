@@ -1,19 +1,24 @@
 import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { FaMapLocationDot } from "react-icons/fa6";
+import { useLoading } from "../hooks/useLoading";
+import Loading from "./Loading";
 
 const BlueFlagBeaches = () => {
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
+    const { isLoading, startLoading, stopLoading } = useLoading();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                startLoading();
                 const response = await fetch(
                     "https://openapi.izmir.bel.tr/api/ibb/cbs/mavibayrakplajlar"
                 );
                 const jsonData = await response.json();
                 setData(jsonData.onemliyer);
+                stopLoading();
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -56,6 +61,7 @@ const BlueFlagBeaches = () => {
                     />
                 </article>
             </section>
+            {isLoading && <Loading />}
             {filteredData.map((item, index) => (
                 <section
                     key={index}
@@ -85,7 +91,7 @@ const BlueFlagBeaches = () => {
                     </article>
                 </section>
             ))}
-            {filteredData.length === 0 && (
+            {!isLoading && filteredData.length === 0 && (
                 <p className="text-center text-lg">
                     Aradığınız kriterlere uygun veri bulunamadı.
                 </p>

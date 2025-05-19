@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
 import Modal from "./Modal";
 import { formatDate } from "../utils/dateHelpers";
+import { useLoading } from "../hooks/useLoading";
+import Loading from "./Loading";
 
 // Individual parameter detail
 const AnalizDetail = ({ eleman }) => {
@@ -47,15 +49,18 @@ const DamWaterQuality = () => {
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedItem, setSelectedItem] = useState(null);
+    const { isLoading, startLoading, stopLoading } = useLoading();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                startLoading();
                 const response = await fetch(
                     "https://openapi.izmir.bel.tr/api/izsu/barajsukaliteraporlari"
                 );
                 const jsonData = await response.json();
-                setData(jsonData.BarajAnalizleri || []);
+                setData(jsonData.BarajAnalizleri);
+                stopLoading();
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -85,6 +90,7 @@ const DamWaterQuality = () => {
                     />
                 </article>
             </section>
+            {isLoading && <Loading />}
             {filteredData.map((item, index) => (
                 <AnalizCard
                     key={index}
@@ -92,7 +98,7 @@ const DamWaterQuality = () => {
                     onClick={() => setSelectedItem(item)}
                 />
             ))}
-            {filteredData.length === 0 && (
+            {!isLoading && filteredData.length === 0 && (
                 <p className="text-center text-lg">
                     Aradığınız kriterlere uygun veri bulunamadı.
                 </p>

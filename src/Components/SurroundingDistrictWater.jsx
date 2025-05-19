@@ -2,20 +2,25 @@ import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
 import Modal from "./Modal";
 import { formatDate } from "../utils/dateHelpers";
+import { useLoading } from "../hooks/useLoading";
+import Loading from "./Loading";
 
 const SurroundingDistrictWater = () => {
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedPoint, setSelectedPoint] = useState(null);
+    const { isLoading, startLoading, stopLoading } = useLoading();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                startLoading();
                 const response = await fetch(
                     "https://openapi.izmir.bel.tr/api/izsu/cevreilcesuanalizleri"
                 );
                 const jsonData = await response.json();
                 setData(jsonData);
+                stopLoading();
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -53,6 +58,7 @@ const SurroundingDistrictWater = () => {
                     />
                 </article>
             </section>
+            {isLoading && <Loading />}
             {filteredData.map((district, index) => (
                 <section key={index} className="flex flex-col gap-4">
                     <h2 className="text-2xl font-semibold">
@@ -77,7 +83,7 @@ const SurroundingDistrictWater = () => {
                     ))}
                 </section>
             ))}
-            {filteredData.length === 0 && (
+            {!isLoading && filteredData.length === 0 && (
                 <p className="text-center text-lg">
                     Aradığınız kriterlere uygun veri bulunamadı.
                 </p>

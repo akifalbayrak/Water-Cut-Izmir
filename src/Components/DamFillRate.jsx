@@ -1,19 +1,24 @@
 import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { formatDate } from "../utils/dateHelpers";
+import { useLoading } from "../hooks/useLoading";
+import Loading from "./Loading";
 
 const DamFillRate = () => {
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
+    const { isLoading, startLoading, stopLoading } = useLoading();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                startLoading();
                 const response = await fetch(
                     "https://openapi.izmir.bel.tr/api/izsu/barajdurum"
                 );
                 const jsonData = await response.json();
                 setData(jsonData);
+                stopLoading();
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -46,6 +51,7 @@ const DamFillRate = () => {
                     />
                 </article>
             </section>
+            {isLoading && <Loading />}
             {filteredData.map((item, index) => (
                 <section
                     key={index}
@@ -117,7 +123,7 @@ const DamFillRate = () => {
                     </article>
                 </section>
             ))}
-            {filteredData.length === 0 && (
+            {!isLoading && filteredData.length === 0 && (
                 <p className="text-center text-lg">
                     Aradığınız kriterlere uygun veri bulunamadı.
                 </p>
