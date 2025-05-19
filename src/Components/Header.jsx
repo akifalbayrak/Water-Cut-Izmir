@@ -28,7 +28,7 @@ const Header = () => {
             path: "/cevre-ilce-su-kalitesi",
             text: "Çevre İlçe Analiz Sonuçları",
         },
-        { path: "/mudurluk-vezne", text: "Şube ve Vezne Bilgileri" },
+        { path: "/sube-vezne", text: "Şube ve Vezne Bilgileri" },
     ];
 
     return (

@@ -57,7 +57,7 @@ function App() {
                         element={<SurroundingDistrictWater />}
                     />
                     <Route
-                        path="/mudurluk-vezne"
+                        path="/sube-vezne"
                         element={<DepartmentCashDesk />}
                     />
                     {/* Catch all unmatched routes */}
