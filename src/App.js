@@ -15,6 +15,7 @@ import BlueFlagBeaches from "./pages/BlueFlagBeaches";
 import SurroundingDistrictWater from "./pages/SurroundingDistrictWater";
 import DepartmentCashDesk from "./pages/DepartmentCashDesk";
 import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 
 function App() {
     return (
@@ -59,6 +60,8 @@ function App() {
                         path="/mudurluk-vezne"
                         element={<DepartmentCashDesk />}
                     />
+                    {/* Catch all unmatched routes */}
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Footer />
             </main>
