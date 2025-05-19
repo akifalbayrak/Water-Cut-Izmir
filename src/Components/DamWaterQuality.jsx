@@ -7,9 +7,7 @@ import { formatDate } from "../utils/dateHelpers";
 const AnalizDetail = ({ eleman }) => {
     return (
         <div className="bg-gray-50 p-4 rounded-lg">
-            <h4 className="font-medium text-gray-800 mb-3">
-                {eleman.ParametreAdi}
-            </h4>
+            <h4 className="font-medium mb-3">{eleman.ParametreAdi}</h4>
             <div className="space-y-2 text-sm">
                 <DetailRow label="Standart" value={eleman.Standart} />
                 <DetailRow label="Birim" value={eleman.Birim} />
@@ -26,8 +24,8 @@ const AnalizDetail = ({ eleman }) => {
 // Row used for displaying label and value pairs
 const DetailRow = ({ label, value }) => (
     <div className="flex justify-between">
-        <span className="text-gray-500">{label}:</span>
-        <span className="font-medium">{value}</span>
+        <span>{label}:</span>
+        <span>{value}</span>
     </div>
 );
 
@@ -100,20 +98,19 @@ const DamWaterQuality = () => {
                 {selectedItem && (
                     <div className="p-6">
                         <div className="mb-6">
-                            <h2 className="text-2xl font-bold text-gray-800">
+                            <h2 className="text-2xl font-bold">
                                 {selectedItem.BarajAdi}
                             </h2>
-                            <p className="text-gray-600 mt-1">
+                            <p className="mt-1">
                                 <span className="font-medium">Tarih:</span>{" "}
                                 {formatDate(selectedItem.Tarih)}
                             </p>
                         </div>
-
                         {selectedItem.Analizler?.map((analiz, index) => (
                             <div
                                 key={index}
                                 className="border-b border-gray-200 pb-6 last:border-0 mb-4">
-                                <h3 className="text-xl font-semibold text-blue-600 mb-4">
+                                <h3 className="text-xl font-semibold mb-4">
                                     {analiz.AnalizTipAdi}
                                 </h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -81,32 +81,35 @@ const SurroundingDistrictWater = () => {
                 {selectedPoint && (
                     <div className="p-6">
                         <div className="mb-6">
-                            <h2 className="text-2xl font-bold text-gray-800">
+                            <h2 className="text-2xl font-bold">
                                 {selectedPoint.ilce}
                             </h2>
-                            <p className="text-gray-600">
-                                {selectedPoint.adres}
-                            </p>
-                            <p className="text-gray-500 text-sm">
-                                {formatDate(selectedPoint.tarih)}
-                            </p>
+                            <p>{selectedPoint.adres}</p>
+                            <p>{formatDate(selectedPoint.tarih)}</p>
                         </div>
-                        <div className="space-y-2 max-h-[60vh] overflow-y-auto">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {selectedPoint.analizler.map((param, i) => (
-                                <div key={i} className="border-b pb-2">
-                                    <p className="font-medium">
+                                <div
+                                    key={i}
+                                    className="bg-gray-50 p-4 rounded-lg">
+                                    <h4 className="font-medium mb-3">
                                         {param.ParametreAdi}
-                                    </p>
-                                    <p className="text-sm text-gray-600">
-                                        Değer:{" "}
-                                        <strong>{param.ParametreDegeri}</strong>{" "}
-                                        {param.Birim.trim() !== ""
-                                            ? `(${param.Birim})`
-                                            : ""}
-                                    </p>
-                                    <p className="text-sm text-gray-500">
-                                        Standart: {param.Standart}
-                                    </p>
+                                    </h4>
+                                    <div className="space-y-2 text-sm">
+                                        <div className="flex justify-between">
+                                            <span>Değer:</span>
+                                            <span>
+                                                {param.ParametreDegeri}{" "}
+                                                {param.Birim.trim() !== ""
+                                                    ? `(${param.Birim})`
+                                                    : ""}
+                                            </span>
+                                        </div>
+                                        <div className="flex justify-between">
+                                            <span>Standart:</span>
+                                            <span>{param.Standart}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             ))}
                         </div>
