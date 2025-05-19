@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
 import Modal from "./Modal";
-
-// Format helper
-const formatDate = (date) => new Date(date).toLocaleDateString("tr-TR");
+import { formatDate } from "../utils/dateHelpers";
 
 // Individual parameter detail
 const AnalizDetail = ({ eleman }) => {

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
+import { formatDateTime } from "../utils/dateHelpers";
 
 const WaterCut = () => {
     const [data, setData] = useState([]);
@@ -21,19 +22,6 @@ const WaterCut = () => {
 
         fetchData();
     }, []);
-
-    // Function to format date and time
-    const formatDateTime = (dateTimeString) => {
-        const dateTime = new Date(dateTimeString);
-        return (
-            dateTime.toLocaleDateString("tr-TR") +
-            " " +
-            dateTime.toLocaleTimeString("tr-TR", {
-                hour: "2-digit",
-                minute: "2-digit",
-            })
-        );
-    };
 
     function remainingTime(arizaGiderilmeTarihi) {
         // Parse the date

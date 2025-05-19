@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
+import { formatDate } from "../utils/dateHelpers";
 
 const DamFillRate = () => {
     const [data, setData] = useState([]);
@@ -20,12 +21,6 @@ const DamFillRate = () => {
 
         fetchData();
     }, []);
-
-    // Function to format date and time
-    const formatDateTime = (dateTimeString) => {
-        const dateTime = new Date(dateTimeString);
-        return dateTime.toLocaleDateString("tr-TR");
-    };
 
     // Filter data based on search term
     const filteredData = data.filter((item) =>
@@ -117,7 +112,7 @@ const DamFillRate = () => {
                             <strong className="font-semibold">
                                 Durum Tarihi:
                             </strong>{" "}
-                            {formatDateTime(item.DurumTarihi)}
+                            {formatDate(item.DurumTarihi)}
                         </div>
                     </article>
                 </section>

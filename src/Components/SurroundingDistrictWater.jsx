@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
 import Modal from "./Modal";
+import { formatDate } from "../utils/dateHelpers";
 
 const SurroundingDistrictWater = () => {
     const [data, setData] = useState([]);
@@ -22,10 +23,6 @@ const SurroundingDistrictWater = () => {
 
         fetchData();
     }, []);
-
-    const formatDate = (dateStr) => {
-        return new Date(dateStr).toLocaleDateString("tr-TR");
-    };
 
     const filteredData = data.filter(
         (item) =>
