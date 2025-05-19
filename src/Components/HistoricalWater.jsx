@@ -41,7 +41,7 @@ const HistoricalWater = () => {
         <main className="p-8 w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] mx-auto gap-4 flex flex-col">
             <section className="flex flex-col justify-center items-center gap-4">
                 <h1 className="text-3xl font-bold text-center">
-                    Tarihi Çeşmeler Listesi
+                    Tarihi Su Listesi
                 </h1>
                 <article className="flex items-center px-3 bg-white py-2 rounded-3xl border border-gray-300 text-2xl w-full md:w-[80%] lg:w-[50%]">
                     <IoIosSearch className="mr-2" />
@@ -92,6 +92,11 @@ const HistoricalWater = () => {
                     )}
                 </section>
             ))}
+            {filteredData.length === 0 && (
+                <p className="text-center text-lg">
+                    Aradığınız kriterlere uygun veri bulunamadı.
+                </p>
+            )}
         </main>
     );
 };

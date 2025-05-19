@@ -85,7 +85,6 @@ const DamWaterQuality = () => {
                     />
                 </article>
             </section>
-
             {filteredData.map((item, index) => (
                 <AnalizCard
                     key={index}
@@ -93,7 +92,11 @@ const DamWaterQuality = () => {
                     onClick={() => setSelectedItem(item)}
                 />
             ))}
-
+            {filteredData.length === 0 && (
+                <p className="text-center text-lg">
+                    Aradığınız kriterlere uygun veri bulunamadı.
+                </p>
+            )}
             <Modal show={selectedItem} onClose={() => setSelectedItem(null)}>
                 {selectedItem && (
                     <div className="p-6">

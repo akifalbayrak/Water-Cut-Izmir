@@ -77,6 +77,11 @@ const SurroundingDistrictWater = () => {
                     ))}
                 </section>
             ))}
+            {filteredData.length === 0 && (
+                <p className="text-center text-lg">
+                    Aradığınız kriterlere uygun veri bulunamadı.
+                </p>
+            )}
             <Modal show={selectedPoint} onClose={() => setSelectedPoint(null)}>
                 {selectedPoint && (
                     <div className="p-6">

@@ -95,6 +95,11 @@ const DepartmentCashDesk = () => {
                     </article>
                 </section>
             ))}
+            {filteredData.length === 0 && (
+                <p className="text-center text-lg">
+                    Aradığınız kriterlere uygun veri bulunamadı.
+                </p>
+            )}
         </main>
     );
 };
