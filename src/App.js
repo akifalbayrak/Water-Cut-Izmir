@@ -14,6 +14,7 @@ import HistoricalWater from "./pages/HistoricalWater";
 import BlueFlagBeaches from "./pages/BlueFlagBeaches";
 import SurroundingDistrictWater from "./pages/SurroundingDistrictWater";
 import DepartmentCashDesk from "./pages/DepartmentCashDesk";
+import Home from "./pages/Home";
 
 function App() {
     return (
@@ -21,13 +22,10 @@ function App() {
             <main className="min-h-screen flex flex-col bg-[#f8f8f8]">
                 <Header />
                 <Routes>
-                    <Route
-                        path="/"
-                        element={<Navigate replace to="/su-kesintisi" />}
-                    />
+                    <Route path="/" element={<Home />} />
                     <Route path="/su-kesintisi" element={<WaterCut />} />
                     <Route path="/gunluk-su" element={<DailyWater />} />
-                    <Route path="/siyaset" element={<PoliticsContent />} />
+                    <Route path="/politika" element={<PoliticsContent />} />
                     <Route
                         path="/haftalik-su-analizi"
                         element={<WeeklyWaterAnalysis />}
