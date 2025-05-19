@@ -26,13 +26,13 @@ const HistoricalWater = () => {
     const filteredData = data.filter(
         (item) =>
             item.ADI?.toLocaleLowerCase("tr-TR").includes(
-                searchTerm.toLowerCase()
+                searchTerm.toLocaleLowerCase("tr-TR")
             ) ||
             item.MAHALLE?.toLocaleLowerCase("tr-TR").includes(
-                searchTerm.toLowerCase()
+                searchTerm.toLocaleLowerCase("tr-TR")
             ) ||
             item.ILCE?.toLocaleLowerCase("tr-TR").includes(
-                searchTerm.toLowerCase()
+                searchTerm.toLocaleLowerCase("tr-TR")
             )
     );
 

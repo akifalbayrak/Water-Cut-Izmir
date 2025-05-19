@@ -25,10 +25,10 @@ const WeeklyWaterAnalysis = () => {
     const filteredData = data.filter(
         (item) =>
             item.ParametreAdi.toLocaleLowerCase("tr-TR").includes(
-                searchTerm.toLowerCase()
+                searchTerm.toLocaleLowerCase("tr-TR")
             ) ||
             item.ParametreKodu.toLocaleLowerCase("tr-TR").includes(
-                searchTerm.toLowerCase()
+                searchTerm.toLocaleLowerCase("tr-TR")
             )
     );
 

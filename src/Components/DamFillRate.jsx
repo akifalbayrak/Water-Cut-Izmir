@@ -30,7 +30,7 @@ const DamFillRate = () => {
     // Filter data based on search term
     const filteredData = data.filter((item) =>
         item.BarajKuyuAdi.toLocaleLowerCase("tr-TR").includes(
-            searchTerm.toLowerCase()
+            searchTerm.toLocaleLowerCase("tr-TR")
         )
     );
 

@@ -42,7 +42,7 @@ const MonthlySourceWaterProduction = () => {
     // Filter data based on search term (always search all data)
     const filteredData = data.filter((item) =>
         item.UretimKaynagi?.toLocaleLowerCase("tr-TR").includes(
-            searchTerm.toLowerCase()
+            searchTerm.toLocaleLowerCase("tr-TR")
         )
     );
 
