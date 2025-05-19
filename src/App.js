@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import FooterComponent from "./components/FooterComponent.jsx";
-import HeaderComponent from "./components/HeaderComponent.jsx";
+import FooterComponent from "./_components/FooterComponent.js";
+import HeaderComponent from "./_components/HeaderComponent.jsx";
 import WaterCut from "./pages/WaterCut.jsx";
 import PoliticsContent from "./pages/PoliticsContent.jsx";
 import DailyWater from "./pages/DailyWater.jsx";

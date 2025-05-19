@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { formatDateTime } from "../utils/dateHelpers";
 import { useLoading } from "../hooks/useLoading";
-import Loading from "../components/Loading";
+import Loading from "../_components/Loading";
 
 const WaterCut = () => {
     const [data, setData] = useState([]);

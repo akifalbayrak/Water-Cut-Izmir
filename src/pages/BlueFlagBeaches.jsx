@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { FaMapLocationDot } from "react-icons/fa6";
 import { useLoading } from "../hooks/useLoading";
-import Loading from "../components/Loading";
+import Loading from "../_components/Loading";
 
 const BlueFlagBeaches = () => {
     const [data, setData] = useState([]);
