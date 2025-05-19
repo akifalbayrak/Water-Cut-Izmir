@@ -12,29 +12,23 @@ const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const menuItems = [
-        { path: "/", text: "Arıza Kaynaklı Su Kesintileri" },
-        { path: "/daily-water", text: "Günlük Su Üretimi" },
+        { path: "/su-kesintisi", text: "Arıza Kaynaklı Su Kesintileri" },
+        { path: "/gunluk-su", text: "Günlük Su Üretimi" },
+        { path: "/haftalik-su-analizi", text: "Haftalık Su Analiz Sonuçları" },
+        { path: "/su-uretim-dagilimi", text: "Su Üretim Dağılımı" },
+        { path: "/baraj-doluluk-orani", text: "Baraj Doluluk Oranı" },
+        { path: "/baraj-listesi", text: "Baraj Listesi" },
         {
-            path: "/weekly-water-analysis",
-            text: "Haftalık Su Analiz Sonuçları",
-        },
-        {
-            path: "/distribution-of-water-production",
-            text: "Su Üretim Dağılımı",
-        },
-        { path: "/dam-fill-rate", text: "Baraj Doluluk Oranı" },
-        { path: "/dam-list", text: "Baraj Listesi" },
-        {
-            path: "/dam-water-quality-reports",
+            path: "/baraj-su-kalite-raporlari",
             text: "Baraj Su Kalite Raporları",
         },
-        { path: "/historical-water-structures", text: "Tarihi Su Yapıları" },
-        { path: "/blue-flag-beaches", text: "Mavi Bayraklı Plajlar" },
+        { path: "/tarihi-su-yapilari", text: "Tarihi Su Yapıları" },
+        { path: "/mavi-bayrakli-plajlar", text: "Mavi Bayraklı Plajlar" },
         {
-            path: "/surrounding-district-water-quality",
+            path: "/cevre-ilce-su-kalitesi",
             text: "Çevre İlçe Analiz Sonuçları",
         },
-        { path: "/department-cash-desk", text: "Şube ve Vezne Bilgileri" },
+        { path: "/mudurluk-vezne", text: "Şube ve Vezne Bilgileri" },
     ];
 
     return (

@@ -1,19 +1,20 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
-import Footer from "./Components/Footer";
-import Header from "./Components/Header";
-import WaterCut from "./Components/WaterCut";
-import PoliticsContent from "./Components/PoliticsContent";
-import DailyWater from "./Components/DailyWater";
-import WeeklyWaterAnalysis from "./Components/WeeklyWaterAnalysis";
-import MonthlySourceWaterProduction from "./Components/MonthlySourceWaterProduction";
-import DamFillRate from "./Components/DamFillRate";
-import DamList from "./Components/DamList";
-import DamWaterQuality from "./Components/DamWaterQuality";
-import HistoricalWater from "./Components/HistoricalWater";
-import BlueFlagBeaches from "./Components/BlueFlagBeaches";
-import SurroundingDistrictWater from "./Components/SurroundingDistrictWater";
-import DepartmentCashDesk from "./Components/DepartmentCashDesk";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import WaterCut from "./pages/WaterCut";
+import PoliticsContent from "./pages/PoliticsContent";
+import DailyWater from "./pages/DailyWater";
+import WeeklyWaterAnalysis from "./pages/WeeklyWaterAnalysis";
+import MonthlySourceWaterProduction from "./pages/MonthlySourceWaterProduction";
+import DamFillRate from "./pages/DamFillRate";
+import DamList from "./pages/DamList";
+import DamWaterQuality from "./pages/DamWaterQuality";
+import HistoricalWater from "./pages/HistoricalWater";
+import BlueFlagBeaches from "./pages/BlueFlagBeaches";
+import SurroundingDistrictWater from "./pages/SurroundingDistrictWater";
+import DepartmentCashDesk from "./pages/DepartmentCashDesk";
+import Home from "./pages/Home";
 
 function App() {
     return (
@@ -21,41 +22,41 @@ function App() {
             <main className="min-h-screen flex flex-col bg-[#f8f8f8]">
                 <Header />
                 <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/su-kesintisi" element={<WaterCut />} />
+                    <Route path="/gunluk-su" element={<DailyWater />} />
+                    <Route path="/politika" element={<PoliticsContent />} />
                     <Route
-                        path="/"
-                        element={<Navigate replace to="/water-cut" />}
-                    />
-                    <Route path="water-cut" element={<WaterCut />} />
-                    <Route path="/daily-water" element={<DailyWater />} />
-                    <Route path="/politics" element={<PoliticsContent />} />
-                    <Route
-                        path="/weekly-water-analysis"
+                        path="/haftalik-su-analizi"
                         element={<WeeklyWaterAnalysis />}
                     />
                     <Route
-                        path="/distribution-of-water-production"
+                        path="/su-uretim-dagilimi"
                         element={<MonthlySourceWaterProduction />}
                     />
-                    <Route path="/dam-fill-rate" element={<DamFillRate />} />
-                    <Route path="/dam-list" element={<DamList />} />
                     <Route
-                        path="/dam-water-quality-reports"
+                        path="/baraj-doluluk-orani"
+                        element={<DamFillRate />}
+                    />
+                    <Route path="/baraj-listesi" element={<DamList />} />
+                    <Route
+                        path="/baraj-su-kalite-raporlari"
                         element={<DamWaterQuality />}
                     />
                     <Route
-                        path="/historical-water-structures"
+                        path="/tarihi-su-yapilari"
                         element={<HistoricalWater />}
                     />
                     <Route
-                        path="/blue-flag-beaches"
+                        path="/mavi-bayrakli-plajlar"
                         element={<BlueFlagBeaches />}
                     />
                     <Route
-                        path="/surrounding-district-water-quality"
+                        path="/cevre-ilce-su-kalitesi"
                         element={<SurroundingDistrictWater />}
                     />
                     <Route
-                        path="/department-cash-desk"
+                        path="/mudurluk-vezne"
                         element={<DepartmentCashDesk />}
                     />
                 </Routes>
