@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
+import { FaMapLocationDot } from "react-icons/fa6";
 import { IoIosSearch } from "react-icons/io";
+import { useLoading } from "../hooks/useLoading";
+import Loading from "./Loading";
 
 const DepartmentCashDesk = () => {
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
+    const { isLoading, startLoading, stopLoading } = useLoading();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                startLoading();
                 const responseSube = await fetch(
                     "https://openapi.izmir.bel.tr/api/izsu/subeler"
                 );
@@ -17,6 +22,7 @@ const DepartmentCashDesk = () => {
                 const jsonDataSube = await responseSube.json();
                 const jsonDataVezne = await responseVezne.json();
                 setData(jsonDataSube.concat(jsonDataVezne));
+                stopLoading();
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -29,19 +35,19 @@ const DepartmentCashDesk = () => {
     const filteredData = data.filter(
         (item) =>
             item.VezneAdi?.toLocaleLowerCase("tr-TR").includes(
-                searchTerm.toLowerCase()
+                searchTerm.toLocaleLowerCase("tr-TR")
             ) ||
             item.VezneAdresi?.toLocaleLowerCase("tr-TR").includes(
-                searchTerm.toLowerCase()
+                searchTerm.toLocaleLowerCase("tr-TR")
             ) ||
             item.Bolge?.toLocaleLowerCase("tr-TR").includes(
-                searchTerm.toLowerCase()
+                searchTerm.toLocaleLowerCase("tr-TR")
             ) ||
             item.SubeAdi?.toLocaleLowerCase("tr-TR").includes(
-                searchTerm.toLowerCase()
+                searchTerm.toLocaleLowerCase("tr-TR")
             ) ||
             item.SubeAdresi?.toLocaleLowerCase("tr-TR").includes(
-                searchTerm.toLowerCase()
+                searchTerm.toLocaleLowerCase("tr-TR")
             )
     );
 
@@ -62,16 +68,11 @@ const DepartmentCashDesk = () => {
                     />
                 </article>
             </section>
+            {isLoading && <Loading />}
             {filteredData.map((item, index) => (
                 <section
-                    onClick={() => {
-                        window.open(
-                            `https://www.google.com/maps?q=${item.ENLEM},${item.BOYLAM}`,
-                            "_blank"
-                        );
-                    }}
                     key={index}
-                    className="p-4 border bg-white border-gray-300 rounded-2xl cursor-pointer hover:border-gray-400">
+                    className="p-4 border bg-white border-gray-300 rounded-2xl hover:border-gray-400">
                     <article className="my-4 flex flex-col md:flex-row items-center gap-4">
                         <h2 className="text-xl font-semibold my-2">
                             {item.SubeAdi || item.VezneAdi}
@@ -82,6 +83,15 @@ const DepartmentCashDesk = () => {
                         <p className="border w-fit p-2 rounded-md text-center">
                             {item.VezneAdresi || item.SubeAdresi}
                         </p>
+                        <FaMapLocationDot
+                            className="cursor-pointer text-2xl text-blue-600"
+                            onClick={() => {
+                                window.open(
+                                    `https://www.google.com/maps?q=${item.ENLEM},${item.BOYLAM}`,
+                                    "_blank"
+                                );
+                            }}
+                        />
                         <p
                             className={`mx-auto md:mr-0 px-3 py-1 rounded-md text-white text-sm ${
                                 item.AktifMi ? "bg-green-500" : "bg-red-500"
@@ -91,6 +101,11 @@ const DepartmentCashDesk = () => {
                     </article>
                 </section>
             ))}
+            {!isLoading && filteredData.length === 0 && (
+                <p className="text-center text-lg">
+                    Aradığınız kriterlere uygun veri bulunamadı.
+                </p>
+            )}
         </main>
     );
 };

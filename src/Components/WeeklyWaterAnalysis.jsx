@@ -1,18 +1,23 @@
 import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
+import { useLoading } from "../hooks/useLoading";
+import Loading from "./Loading";
 
 const WeeklyWaterAnalysis = () => {
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
+    const { isLoading, startLoading, stopLoading } = useLoading();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                startLoading();
                 const response = await fetch(
                     "https://openapi.izmir.bel.tr/api/izsu/haftaliksuanalizleri"
                 );
                 const jsonData = await response.json();
                 setData(jsonData.TumAnalizler[0].analizSonuclari);
+                stopLoading();
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -25,10 +30,10 @@ const WeeklyWaterAnalysis = () => {
     const filteredData = data.filter(
         (item) =>
             item.ParametreAdi.toLocaleLowerCase("tr-TR").includes(
-                searchTerm.toLowerCase()
+                searchTerm.toLocaleLowerCase("tr-TR")
             ) ||
             item.ParametreKodu.toLocaleLowerCase("tr-TR").includes(
-                searchTerm.toLowerCase()
+                searchTerm.toLocaleLowerCase("tr-TR")
             )
     );
 
@@ -49,6 +54,7 @@ const WeeklyWaterAnalysis = () => {
                     />
                 </article>
             </section>
+            {isLoading && <Loading />}
             {filteredData.map((item, index) => (
                 <section
                     className="p-4 border bg-white border-gray-300 rounded-2xl cursor-pointer hover:border-gray-400"
@@ -74,6 +80,11 @@ const WeeklyWaterAnalysis = () => {
                     </article>
                 </section>
             ))}
+            {!isLoading && filteredData.length === 0 && (
+                <p className="text-center text-lg">
+                    Aradığınız kriterlere uygun veri bulunamadı.
+                </p>
+            )}
         </main>
     );
 };

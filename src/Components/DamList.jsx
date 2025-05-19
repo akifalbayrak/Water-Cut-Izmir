@@ -1,18 +1,23 @@
 import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
+import { useLoading } from "../hooks/useLoading";
+import Loading from "./Loading";
 
 const DamList = () => {
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
+    const { isLoading, startLoading, stopLoading } = useLoading();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                startLoading();
                 const response = await fetch(
                     "https://openapi.izmir.bel.tr/api/izsu/barajvekuyular"
                 );
                 const jsonData = await response.json();
                 setData(jsonData);
+                stopLoading();
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -25,10 +30,10 @@ const DamList = () => {
     const filteredData = data.filter(
         (item) =>
             item.Adi.toLocaleLowerCase("tr-TR").includes(
-                searchTerm.toLowerCase()
+                searchTerm.toLocaleLowerCase("tr-TR")
             ) ||
             item.TurAdi.toLocaleLowerCase("tr-TR").includes(
-                searchTerm.toLowerCase()
+                searchTerm.toLocaleLowerCase("tr-TR")
             )
     );
 
@@ -49,6 +54,7 @@ const DamList = () => {
                     />
                 </article>
             </section>
+            {isLoading && <Loading />}
             {filteredData.map((item, index) => (
                 <section
                     key={index}
@@ -63,7 +69,7 @@ const DamList = () => {
                     </article>
                 </section>
             ))}
-            {filteredData.length === 0 && (
+            {!isLoading && filteredData.length === 0 && (
                 <p className="text-center text-lg">
                     Aradığınız kriterlere uygun veri bulunamadı.
                 </p>

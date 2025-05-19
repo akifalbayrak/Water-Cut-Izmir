@@ -1,19 +1,25 @@
 import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
+import { formatDateTime } from "../utils/dateHelpers";
+import { useLoading } from "../hooks/useLoading";
+import Loading from "./Loading";
 
 const WaterCut = () => {
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedItem, setSelectedItem] = useState(null);
+    const { isLoading, startLoading, stopLoading } = useLoading();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                startLoading();
                 const response = await fetch(
                     "https://openapi.izmir.bel.tr/api/izsu/arizakaynaklisukesintileri"
                 );
                 const jsonData = await response.json();
                 setData(jsonData);
+                stopLoading();
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -21,19 +27,6 @@ const WaterCut = () => {
 
         fetchData();
     }, []);
-
-    // Function to format date and time
-    const formatDateTime = (dateTimeString) => {
-        const dateTime = new Date(dateTimeString);
-        return (
-            dateTime.toLocaleDateString("tr-TR") +
-            " " +
-            dateTime.toLocaleTimeString("tr-TR", {
-                hour: "2-digit",
-                minute: "2-digit",
-            })
-        );
-    };
 
     function remainingTime(arizaGiderilmeTarihi) {
         // Parse the date
@@ -60,15 +53,6 @@ const WaterCut = () => {
 
         return remainingTimeStr.trim();
     }
-
-    // Function to handle item click and toggle selected item
-    const handleItemClick = (item) => {
-        if (selectedItem === item) {
-            setSelectedItem(null);
-        } else {
-            setSelectedItem(item);
-        }
-    };
 
     // Function to filter data based on search term
     const filteredData = data.filter((item) => {
@@ -99,11 +83,18 @@ const WaterCut = () => {
                     />
                 </article>
             </section>
+            {isLoading && <Loading />}
             {filteredData.map((item, index) => (
                 <section
                     className="p-4 border bg-white border-gray-300 rounded-2xl cursor-pointer hover:border-gray-400"
                     key={index}
-                    onClick={() => handleItemClick(item)}>
+                    onClick={() => {
+                        if (selectedItem === item) {
+                            setSelectedItem(null);
+                            return;
+                        }
+                        setSelectedItem(item);
+                    }}>
                     <article className="my-4 flex flex-col md:flex-row items-center gap-4">
                         <h2 className="text-xl font-semibold my-2">
                             {item.IlceAdi}
@@ -160,7 +151,7 @@ const WaterCut = () => {
                     )}
                 </section>
             ))}
-            {filteredData.length === 0 && (
+            {!isLoading && filteredData.length === 0 && (
                 <p className="text-center text-lg">
                     Aradığınız kriterlere uygun veri bulunamadı.
                 </p>

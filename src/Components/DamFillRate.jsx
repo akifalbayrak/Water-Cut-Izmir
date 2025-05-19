@@ -1,18 +1,24 @@
 import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
+import { formatDate } from "../utils/dateHelpers";
+import { useLoading } from "../hooks/useLoading";
+import Loading from "./Loading";
 
 const DamFillRate = () => {
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
+    const { isLoading, startLoading, stopLoading } = useLoading();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                startLoading();
                 const response = await fetch(
                     "https://openapi.izmir.bel.tr/api/izsu/barajdurum"
                 );
                 const jsonData = await response.json();
                 setData(jsonData);
+                stopLoading();
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -21,16 +27,10 @@ const DamFillRate = () => {
         fetchData();
     }, []);
 
-    // Function to format date and time
-    const formatDateTime = (dateTimeString) => {
-        const dateTime = new Date(dateTimeString);
-        return dateTime.toLocaleDateString("tr-TR");
-    };
-
     // Filter data based on search term
     const filteredData = data.filter((item) =>
         item.BarajKuyuAdi.toLocaleLowerCase("tr-TR").includes(
-            searchTerm.toLowerCase()
+            searchTerm.toLocaleLowerCase("tr-TR")
         )
     );
 
@@ -51,6 +51,7 @@ const DamFillRate = () => {
                     />
                 </article>
             </section>
+            {isLoading && <Loading />}
             {filteredData.map((item, index) => (
                 <section
                     key={index}
@@ -117,11 +118,16 @@ const DamFillRate = () => {
                             <strong className="font-semibold">
                                 Durum Tarihi:
                             </strong>{" "}
-                            {formatDateTime(item.DurumTarihi)}
+                            {formatDate(item.DurumTarihi)}
                         </div>
                     </article>
                 </section>
             ))}
+            {!isLoading && filteredData.length === 0 && (
+                <p className="text-center text-lg">
+                    Aradığınız kriterlere uygun veri bulunamadı.
+                </p>
+            )}
         </main>
     );
 };
