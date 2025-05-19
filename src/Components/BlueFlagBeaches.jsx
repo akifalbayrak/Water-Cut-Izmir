@@ -54,7 +54,7 @@ const BlueFlagBeaches = () => {
                     <IoIosSearch className="mr-2" />
                     <input
                         type="text"
-                        placeholder="Mahalle veya ilçe ara"
+                        placeholder="Plaj, ilçe veya mahalle arayın..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="text-lg bg-transparent border-none rounded w-full focus:outline-none focus:shadow-outline"

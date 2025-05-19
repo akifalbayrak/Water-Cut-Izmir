@@ -44,7 +44,7 @@ const DamFillRate = () => {
                     <IoIosSearch className="mr-2" />
                     <input
                         type="text"
-                        placeholder="Mahalle veya ilçe ara"
+                        placeholder="Baraj arayın..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="text-lg bg-transparent border-none rounded w-full focus:outline-none focus:shadow-outline"
@@ -64,37 +64,41 @@ const DamFillRate = () => {
                             <strong className="font-semibold">
                                 Su Durumu:
                             </strong>{" "}
-                            {item.SuDurumu}
+                            {(item.SuDurumu / 1e6).toFixed(3) + " Mm³"}
                         </div>
                         <div>
                             <strong className="font-semibold">
                                 Su Yüksekliği:
                             </strong>{" "}
-                            {item.SuYuksekligi}
+                            {item.SuYuksekligi + " m³"}
                         </div>
                         <div>
                             <strong className="font-semibold">
                                 Kullanılabilir Göl Su Hacmi:
                             </strong>{" "}
-                            {item.KullanılabilirGolSuHacmi}
+                            {(item.KullanılabilirGolSuHacmi / 1e6).toFixed(3) +
+                                " Mm³"}
                         </div>
                         <div>
                             <strong className="font-semibold">
                                 Tüketilebilir Su Kapasitesi:
                             </strong>{" "}
-                            {item.TuketilebilirSuKapasitesi}
+                            {(item.TuketilebilirSuKapasitesi / 1e6).toFixed(3) +
+                                " Mm³"}
                         </div>
                         <div>
                             <strong className="font-semibold">
                                 Maksimum Su Kapasitesi:
                             </strong>{" "}
-                            {item.MaksimumSuKapasitesi}
+                            {(item.MaksimumSuKapasitesi / 1e6).toFixed(3) +
+                                " Mm³"}
                         </div>
                         <div>
                             <strong className="font-semibold">
                                 Minimum Su Kapasitesi:
                             </strong>{" "}
-                            {item.MinimumSuKapasitesi}
+                            {(item.MinimumSuKapasitesi / 1e6).toFixed(3) +
+                                " Mm³"}
                         </div>
                         <div>
                             <strong className="font-semibold">
@@ -106,13 +110,13 @@ const DamFillRate = () => {
                             <strong className="font-semibold">
                                 Minimum Su Yüksekliği:
                             </strong>{" "}
-                            {item.MinimumSuYuksekligi}
+                            {item.MinimumSuYuksekligi + " m³"}
                         </div>
                         <div>
                             <strong className="font-semibold">
                                 Maksimum Su Yüksekliği:
                             </strong>{" "}
-                            {item.MaksimumSuYuksekligi}
+                            {item.MaksimumSuYuksekligi + " m³"}
                         </div>
                         <div>
                             <strong className="font-semibold">

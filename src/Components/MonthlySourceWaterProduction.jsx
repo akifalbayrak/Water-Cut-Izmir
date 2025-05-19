@@ -83,7 +83,7 @@ const MonthlySourceWaterProduction = () => {
                     <IoIosSearch className="mr-2" />
                     <input
                         type="text"
-                        placeholder="Üretim kaynağı ara"
+                        placeholder="Kaynak arayın..."
                         value={searchTerm}
                         onChange={(e) => {
                             setSearchTerm(e.target.value);
