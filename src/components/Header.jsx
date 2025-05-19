@@ -8,7 +8,7 @@ import {
     faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
-const HeaderComponent = () => {
+const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const menuItems = [
@@ -114,4 +114,4 @@ const HeaderComponent = () => {
     );
 };
 
-export default HeaderComponent;
+export default Header;

@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import FooterComponent from "./components/FooterComponent.jsx";
-import HeaderComponent from "./components/HeaderComponent.jsx";
+import Footer from "./components/Footer.jsx";
+import Header from "./components/Header.jsx";
 import WaterCut from "./pages/WaterCut.jsx";
 import PoliticsContent from "./pages/PoliticsContent.jsx";
 import DailyWater from "./pages/DailyWater.jsx";
@@ -21,7 +21,7 @@ function App() {
     return (
         <BrowserRouter>
             <main className="min-h-screen flex flex-col bg-[#f8f8f8]">
-                <HeaderComponent />
+                <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/su-kesintisi" element={<WaterCut />} />
@@ -63,7 +63,7 @@ function App() {
                     {/* Catch all unmatched routes */}
                     <Route path="*" element={<NotFound />} />
                 </Routes>
-                <FooterComponent />
+                <Footer />
             </main>
         </BrowserRouter>
     );
