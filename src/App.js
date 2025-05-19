@@ -1,21 +1,21 @@
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import WaterCut from "./pages/WaterCut";
-import PoliticsContent from "./pages/PoliticsContent";
-import DailyWater from "./pages/DailyWater";
-import WeeklyWaterAnalysis from "./pages/WeeklyWaterAnalysis";
-import MonthlySourceWaterProduction from "./pages/MonthlySourceWaterProduction";
-import DamFillRate from "./pages/DamFillRate";
-import DamList from "./pages/DamList";
-import DamWaterQuality from "./pages/DamWaterQuality";
-import HistoricalWater from "./pages/HistoricalWater";
-import BlueFlagBeaches from "./pages/BlueFlagBeaches";
-import SurroundingDistrictWater from "./pages/SurroundingDistrictWater";
-import DepartmentCashDesk from "./pages/DepartmentCashDesk";
-import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
+import Footer from "./components/Footer.jsx";
+import Header from "./components/Header.jsx";
+import WaterCut from "./pages/WaterCut.jsx";
+import PoliticsContent from "./pages/PoliticsContent.jsx";
+import DailyWater from "./pages/DailyWater.jsx";
+import WeeklyWaterAnalysis from "./pages/WeeklyWaterAnalysis.jsx";
+import MonthlySourceWaterProduction from "./pages/MonthlySourceWaterProduction.jsx";
+import DamFillRate from "./pages/DamFillRate.jsx";
+import DamList from "./pages/DamList.jsx";
+import DamWaterQuality from "./pages/DamWaterQuality.jsx";
+import HistoricalWater from "./pages/HistoricalWater.jsx";
+import BlueFlagBeaches from "./pages/BlueFlagBeaches.jsx";
+import SurroundingDistrictWater from "./pages/SurroundingDistrictWater.jsx";
+import DepartmentCashDesk from "./pages/DepartmentCashDesk.jsx";
+import Home from "./pages/Home.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 function App() {
     return (
