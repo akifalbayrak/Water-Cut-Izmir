@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { useLoading } from "../hooks/useLoading";
-import Loading from "../_components/Loading";
+import Loading from "../components/Loading";
 
 const MonthlySourceWaterProduction = () => {
     const [data, setData] = useState([]);
