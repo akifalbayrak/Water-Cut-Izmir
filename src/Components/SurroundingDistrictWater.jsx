@@ -51,7 +51,7 @@ const SurroundingDistrictWater = () => {
                     <IoIosSearch className="mr-2" />
                     <input
                         type="text"
-                        placeholder="Mahalle veya ilçe ara"
+                        placeholder="İlçe veya adres arayın..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="text-lg bg-transparent border-none rounded w-full focus:outline-none focus:shadow-outline"
