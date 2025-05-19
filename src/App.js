@@ -23,39 +23,42 @@ function App() {
                 <Routes>
                     <Route
                         path="/"
-                        element={<Navigate replace to="/water-cut" />}
+                        element={<Navigate replace to="/su-kesintisi" />}
                     />
-                    <Route path="water-cut" element={<WaterCut />} />
-                    <Route path="/daily-water" element={<DailyWater />} />
-                    <Route path="/politics" element={<PoliticsContent />} />
+                    <Route path="/su-kesintisi" element={<WaterCut />} />
+                    <Route path="/gunluk-su" element={<DailyWater />} />
+                    <Route path="/siyaset" element={<PoliticsContent />} />
                     <Route
-                        path="/weekly-water-analysis"
+                        path="/haftalik-su-analizi"
                         element={<WeeklyWaterAnalysis />}
                     />
                     <Route
-                        path="/distribution-of-water-production"
+                        path="/su-uretim-dagilimi"
                         element={<MonthlySourceWaterProduction />}
                     />
-                    <Route path="/dam-fill-rate" element={<DamFillRate />} />
-                    <Route path="/dam-list" element={<DamList />} />
                     <Route
-                        path="/dam-water-quality-reports"
+                        path="/baraj-doluluk-orani"
+                        element={<DamFillRate />}
+                    />
+                    <Route path="/baraj-listesi" element={<DamList />} />
+                    <Route
+                        path="/baraj-su-kalite-raporlari"
                         element={<DamWaterQuality />}
                     />
                     <Route
-                        path="/historical-water-structures"
+                        path="/tarihi-su-yapilari"
                         element={<HistoricalWater />}
                     />
                     <Route
-                        path="/blue-flag-beaches"
+                        path="/mavi-bayrakli-plajlar"
                         element={<BlueFlagBeaches />}
                     />
                     <Route
-                        path="/surrounding-district-water-quality"
+                        path="/cevre-ilce-su-kalitesi"
                         element={<SurroundingDistrictWater />}
                     />
                     <Route
-                        path="/department-cash-desk"
+                        path="/mudurluk-vezne"
                         element={<DepartmentCashDesk />}
                     />
                 </Routes>
