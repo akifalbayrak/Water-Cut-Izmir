@@ -31,5 +31,3 @@ This project is a web application designed to display and manage active water cu
 3. **Run the Application:** After installing dependencies, run `npm start` to start the development server.
 
 4. **Access the Application:** Open your web browser and navigate to `http://localhost:3000` to access the application. You can now search for water cuts in İzmir and view detailed information about each interruption.
-
-![alt text](image.png)
