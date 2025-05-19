@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
-const Footer = () => {
+const FooterComponent = () => {
     const [showModal, setShowModal] = useState(false);
 
     const toggleModal = () => {
@@ -178,4 +178,4 @@ const Footer = () => {
     );
 };
 
-export default Footer;
+export default FooterComponent; 
